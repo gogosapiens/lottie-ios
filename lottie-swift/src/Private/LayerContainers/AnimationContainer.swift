@@ -193,7 +193,7 @@ final class AnimationContainer: CALayer {
 }
 
 fileprivate class BlankImageProvider: AnimationImageProvider {
-  func imageForAsset(asset: ImageAsset) -> CGImage? {
+  func imageForAsset(asset: ImageAsset) -> URL? {
     return nil
   }
 }

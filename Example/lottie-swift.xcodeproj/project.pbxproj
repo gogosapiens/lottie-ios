@@ -12,30 +12,29 @@
 		486E8361220A234C007CD915 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E8360220A234C007CD915 /* ViewController.swift */; };
 		486E8363220A234D007CD915 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 486E8362220A234D007CD915 /* Assets.xcassets */; };
 		486E8366220A234D007CD915 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486E8364220A234D007CD915 /* Main.storyboard */; };
-		486E8372220A295A007CD915 /* TestAnimations in Resources */ = {isa = PBXBuildFile; fileRef = 48E24AC2220231F100BBB8E5 /* TestAnimations */; };
 		486E837A220A2BB5007CD915 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E8379220A2BB5007CD915 /* AppDelegate.swift */; };
 		486E837C220A2BB5007CD915 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E837B220A2BB5007CD915 /* ViewController.swift */; };
 		486E837F220A2BB5007CD915 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486E837D220A2BB5007CD915 /* Main.storyboard */; };
 		486E8381220A2BB6007CD915 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 486E8380220A2BB6007CD915 /* Assets.xcassets */; };
-		486E8386220A2C79007CD915 /* TestAnimations in Resources */ = {isa = PBXBuildFile; fileRef = 48E24AC2220231F100BBB8E5 /* TestAnimations */; };
 		48A99A4A21E6906A00D79E59 /* Text_NoGlyph.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A99A4621E6906A00D79E59 /* Text_NoGlyph.json */; };
 		48A99A4B21E6906A00D79E59 /* Text_NoAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A99A4721E6906A00D79E59 /* Text_NoAnimation.json */; };
 		48A99A4C21E6906A00D79E59 /* Text_Glyph.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A99A4821E6906A00D79E59 /* Text_Glyph.json */; };
 		48A99A4D21E6906A00D79E59 /* Text_AnimatedProperties.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A99A4921E6906A00D79E59 /* Text_AnimatedProperties.json */; };
 		48A99A5221E6A23800D79E59 /* Assets.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A99A5121E6A23800D79E59 /* Assets.json */; };
 		48A99A5E21E6AB3300D79E59 /* Marker.json in Resources */ = {isa = PBXBuildFile; fileRef = 48A99A5D21E6AB3300D79E59 /* Marker.json */; };
-		48E24AC3220231F100BBB8E5 /* TestAnimations in Resources */ = {isa = PBXBuildFile; fileRef = 48E24AC2220231F100BBB8E5 /* TestAnimations */; };
 		48E311C521E54EFF005E2392 /* EverythingBagel.json in Resources */ = {isa = PBXBuildFile; fileRef = 48E311C421E54EFF005E2392 /* EverythingBagel.json */; };
 		48F48E7D21E406B100D9E9A6 /* BasicLayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F48E7B21E406B100D9E9A6 /* BasicLayers.json */; };
 		48F48E7E21E406B100D9E9A6 /* BasicLayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F48E7B21E406B100D9E9A6 /* BasicLayers.json */; };
 		48F48E7F21E406B100D9E9A6 /* AnimatedTransforms.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F48E7C21E406B100D9E9A6 /* AnimatedTransforms.json */; };
 		48F48E8021E406B100D9E9A6 /* AnimatedTransforms.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F48E7C21E406B100D9E9A6 /* AnimatedTransforms.json */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
-		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		95E26F3223E8752D00A10C19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E26F2F23E8752C00A10C19 /* Main.storyboard */; };
+		95E26F3423E8752D00A10C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E26F3123E8752D00A10C19 /* ViewController.swift */; };
+		95E26F3C23E875DB00A10C19 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 95E26F3A23E875DB00A10C19 /* images */; };
+		95E26F3D23E875DB00A10C19 /* Animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 95E26F3B23E875DB00A10C19 /* Animation.json */; };
 		BD219F24999976E886C12456 /* Pods_lottie_swift_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486E8356220A2275007CD915 /* Pods_lottie_swift_macOS.framework */; };
 		F70695AD1682BD3DE4571C16 /* Pods_lottie_swift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE029188DBACE4177BA6CED /* Pods_lottie_swift_Example.framework */; };
 		F9607D5C3894D27EBC8E897A /* Pods_lottie_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A87FE847836C80F1A12E29 /* Pods_lottie_swift_Tests.framework */; };
@@ -77,15 +76,12 @@
 		48A99A4921E6906A00D79E59 /* Text_AnimatedProperties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Text_AnimatedProperties.json; sourceTree = "<group>"; };
 		48A99A5121E6A23800D79E59 /* Assets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Assets.json; sourceTree = "<group>"; };
 		48A99A5D21E6AB3300D79E59 /* Marker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Marker.json; sourceTree = "<group>"; };
-		48E24AC2220231F100BBB8E5 /* TestAnimations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestAnimations; sourceTree = "<group>"; };
 		48E311C421E54EFF005E2392 /* EverythingBagel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EverythingBagel.json; sourceTree = "<group>"; };
 		48F48E7B21E406B100D9E9A6 /* BasicLayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BasicLayers.json; sourceTree = "<group>"; };
 		48F48E7C21E406B100D9E9A6 /* AnimatedTransforms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AnimatedTransforms.json; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* lottie-swift_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lottie-swift_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* lottie-swift_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lottie-swift_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +90,10 @@
 		669CBA494BD2722D6FA87704 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		90A6D05A7336A0F45A1084BE /* Pods-lottie-swift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_Example/Pods-lottie-swift_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		91240075B0C8FCDB8EE7FA52 /* lottie-ios.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "lottie-ios.podspec"; path = "../lottie-ios.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95E26F2F23E8752C00A10C19 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		95E26F3123E8752D00A10C19 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		95E26F3A23E875DB00A10C19 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = "../../../../Downloads/lottie-ios-master/Example/lottie-swift/images"; sourceTree = "<group>"; };
+		95E26F3B23E875DB00A10C19 /* Animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Animation.json; sourceTree = "<group>"; };
 		990C0AA8A35456B23B51C127 /* Pods-lottie-swift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_Example/Pods-lottie-swift_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9BE45D36D5254BD996E95AB1 /* Pods-lottie-swift_macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_macOS/Pods-lottie-swift_macOS.release.xcconfig"; sourceTree = "<group>"; };
 		9C512735B8BB596E2E2D58CE /* Pods-lottie-swift_tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_tvOS/Pods-lottie-swift_tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,12 +223,10 @@
 		607FACD21AFB9204008FA782 /* Example for lottie-swift */ = {
 			isa = PBXGroup;
 			children = (
-				48E24AC2220231F100BBB8E5 /* TestAnimations */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				95E26F2F23E8752C00A10C19 /* Main.storyboard */,
+				95E26F3123E8752D00A10C19 /* ViewController.swift */,
+				95E26F3923E875C500A10C19 /* Animation */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for lottie-swift";
@@ -238,6 +236,8 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -279,6 +279,15 @@
 				E23ECB37162FF8C4A2827EEC /* Pods_lottie_swift_tvOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95E26F3923E875C500A10C19 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				95E26F3B23E875DB00A10C19 /* Animation.json */,
+				95E26F3A23E875DB00A10C19 /* images */,
+			);
+			name = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,22 +381,22 @@
 				TargetAttributes = {
 					486E835B220A234C007CD915 = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = VM8ZLJG6JZ;
+						DevelopmentTeam = 9QP62X62JT;
 						ProvisioningStyle = Automatic;
 					};
 					486E8376220A2BB5007CD915 = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = VM8ZLJG6JZ;
+						DevelopmentTeam = 9QP62X62JT;
 						ProvisioningStyle = Automatic;
 					};
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = VM8ZLJG6JZ;
+						DevelopmentTeam = 9QP62X62JT;
 						LastSwiftMigration = 1020;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = VM8ZLJG6JZ;
+						DevelopmentTeam = 9QP62X62JT;
 						LastSwiftMigration = 1020;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -419,7 +428,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				486E8372220A295A007CD915 /* TestAnimations in Resources */,
 				486E8363220A234D007CD915 /* Assets.xcassets in Resources */,
 				486E8366220A234D007CD915 /* Main.storyboard in Resources */,
 			);
@@ -429,7 +437,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				486E8386220A2C79007CD915 /* TestAnimations in Resources */,
 				486E8381220A2BB6007CD915 /* Assets.xcassets in Resources */,
 				486E837F220A2BB5007CD915 /* Main.storyboard in Resources */,
 			);
@@ -439,9 +446,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48E24AC3220231F100BBB8E5 /* TestAnimations in Resources */,
-				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				95E26F3C23E875DB00A10C19 /* images in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				95E26F3D23E875DB00A10C19 /* Animation.json in Resources */,
+				95E26F3223E8752D00A10C19 /* Main.storyboard in Resources */,
 				48F48E7D21E406B100D9E9A6 /* BasicLayers.json in Resources */,
 				48F48E7F21E406B100D9E9A6 /* AnimatedTransforms.json in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -618,7 +626,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				95E26F3423E8752D00A10C19 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,14 +666,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				607FACDA1AFB9204008FA782 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -695,7 +695,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "lottie-swift_macOS/Info.plist";
@@ -728,7 +728,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "lottie-swift_macOS/Info.plist";
@@ -758,7 +758,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "lottie-swift_tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -789,7 +789,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "lottie-swift_tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -915,7 +915,7 @@
 			baseConfigurationReference = 90A6D05A7336A0F45A1084BE /* Pods-lottie-swift_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				INFOPLIST_FILE = "lottie-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -930,7 +930,7 @@
 			baseConfigurationReference = 990C0AA8A35456B23B51C127 /* Pods-lottie-swift_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				INFOPLIST_FILE = "lottie-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -944,7 +944,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E82294C6B04BC5EF7FF4ED2E /* Pods-lottie-swift_Tests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -966,7 +966,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40ED9D991E74F17AC8F06E90 /* Pods-lottie-swift_Tests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = VM8ZLJG6JZ;
+				DEVELOPMENT_TEAM = 9QP62X62JT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

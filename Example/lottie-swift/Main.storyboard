@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1ft-ZH-VFl">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Second-->
+        <scene sceneID="5ez-Ad-auP">
+            <objects>
+                <viewController id="1ft-ZH-VFl" customClass="ViewController" customModule="lottie_swift_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UUU-Ub-Fd4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goh-Oh-aHo" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Animation"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="goh-Oh-aHo" firstAttribute="top" secondItem="LQA-fR-EFT" secondAttribute="top" id="eIY-Ye-nSe"/>
+                            <constraint firstItem="LQA-fR-EFT" firstAttribute="bottom" secondItem="goh-Oh-aHo" secondAttribute="bottom" id="eYb-dK-sCU"/>
+                            <constraint firstItem="LQA-fR-EFT" firstAttribute="trailing" secondItem="goh-Oh-aHo" secondAttribute="trailing" id="go8-G2-10h"/>
+                            <constraint firstItem="goh-Oh-aHo" firstAttribute="leading" secondItem="LQA-fR-EFT" secondAttribute="leading" id="il1-gi-Crl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LQA-fR-EFT"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Second" id="2XX-CX-Msv"/>
+                    <connections>
+                        <outlet property="animationView" destination="goh-Oh-aHo" id="XBh-wy-VNE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1oR-jQ-bwr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="231" y="113"/>
+        </scene>
+    </scenes>
+</document>

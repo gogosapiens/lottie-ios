@@ -34,13 +34,14 @@ public class BundleImageProvider: AnimationImageProvider {
     self.searchPath = searchPath
   }
   
-  public func imageForAsset(asset: ImageAsset) -> CGImage? {
+  public func imageForAsset(asset: ImageAsset) -> URL? {
     
     if asset.name.hasPrefix("data:"),
       let url = URL(string: asset.name),
       let data = try? Data(contentsOf: url),
       let image = UIImage(data: data) {
-      return image.cgImage
+//      return image.cgImage
+      return url
     }
     
     let imagePath: String?
@@ -69,11 +70,17 @@ public class BundleImageProvider: AnimationImageProvider {
       }
     }
     
-    guard let foundPath = imagePath, let image = UIImage(contentsOfFile: foundPath) else {
+//    guard let foundPath = imagePath, let image = UIImage(contentsOfFile: foundPath) else {
+//      /// No image found.
+//      return nil
+//    }
+    //    return image.cgImage
+    
+    guard let foundPath = imagePath else {
       /// No image found.
       return nil
     }
-    return image.cgImage
+    return URL(fileURLWithPath: foundPath)
   }
   
 }

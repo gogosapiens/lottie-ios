@@ -7,6 +7,7 @@
 
 import Foundation
 import QuartzCore
+import AVFoundation
 
 /**
  The base class for a child layer of CompositionContainer
@@ -18,6 +19,8 @@ class CompositionLayer: CALayer, KeypathSearchable {
   let transformNode: LayerTransformNode
   
   let contentsLayer: CALayer = CALayer()
+    
+    let playerLayer = AVPlayerLayer()
   
   let maskLayer: MaskContainerLayer?
   
@@ -87,7 +90,24 @@ class CompositionLayer: CALayer, KeypathSearchable {
     if let maskLayer = maskLayer {
       contentsLayer.mask = maskLayer
     }
+    
+    playerLayer.anchorPoint = .zero
+    playerLayer.bounds = CGRect(origin: .zero, size: contentsLayer.frame.size)
+    playerLayer.actions = [
+      "opacity" : NSNull(),
+      "transform" : NSNull(),
+      "bounds" : NSNull(),
+      "anchorPoint" : NSNull(),
+      "sublayerTransform" : NSNull(),
+      "hidden" : NSNull()
+    ]
+    addSublayer(playerLayer)
+    
+    if let maskLayer = maskLayer {
+      playerLayer.mask = maskLayer
+    }
   }
+    
   
   override init(layer: Any) {
     /// Used for creating shadow model layers. Read More here: https://developer.apple.com/documentation/quartzcore/calayer/1410842-init
@@ -121,6 +141,11 @@ class CompositionLayer: CALayer, KeypathSearchable {
     contentsLayer.transform = transformNode.globalTransform
     contentsLayer.opacity = transformNode.opacity
     contentsLayer.isHidden = !layerVisible
+    
+    playerLayer.transform = transformNode.globalTransform
+    playerLayer.opacity = transformNode.opacity
+    playerLayer.isHidden = !layerVisible
+    
     layerDelegate?.frameUpdated(frame: frame)
   }
   
