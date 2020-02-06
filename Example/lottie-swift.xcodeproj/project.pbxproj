@@ -34,6 +34,7 @@
 		95601F9D23E998E500DBD8CD /* animation1.json in Resources */ = {isa = PBXBuildFile; fileRef = 95601F9C23E998E500DBD8CD /* animation1.json */; };
 		95601F9F23E9C8CB00DBD8CD /* pic_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 95601F9E23E9C8CB00DBD8CD /* pic_02.png */; };
 		95601FA323EAEE9900DBD8CD /* animation3.json in Resources */ = {isa = PBXBuildFile; fileRef = 95601FA223EAEE9800DBD8CD /* animation3.json */; };
+		95624DF623EC34F200B795DC /* animation4.json in Resources */ = {isa = PBXBuildFile; fileRef = 95624DF523EC34F100B795DC /* animation4.json */; };
 		95E26F3223E8752D00A10C19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E26F2F23E8752C00A10C19 /* Main.storyboard */; };
 		95E26F3423E8752D00A10C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E26F3123E8752D00A10C19 /* ViewController.swift */; };
 		95E26F4823E9721C00A10C19 /* pic_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E26F4623E9721B00A10C19 /* pic_01.png */; };
@@ -97,6 +98,7 @@
 		95601F9C23E998E500DBD8CD /* animation1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation1.json; sourceTree = "<group>"; };
 		95601F9E23E9C8CB00DBD8CD /* pic_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_02.png; sourceTree = "<group>"; };
 		95601FA223EAEE9800DBD8CD /* animation3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation3.json; sourceTree = "<group>"; };
+		95624DF523EC34F100B795DC /* animation4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation4.json; sourceTree = "<group>"; };
 		95E26F2F23E8752C00A10C19 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95E26F3123E8752D00A10C19 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		95E26F4623E9721B00A10C19 /* pic_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_01.png; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				95E26F4B23E9913C00A10C19 /* animation2.json */,
 				95601F9C23E998E500DBD8CD /* animation1.json */,
 				95601FA223EAEE9800DBD8CD /* animation3.json */,
+				95624DF523EC34F100B795DC /* animation4.json */,
 				95E26F4A23E9722100A10C19 /* images */,
 			);
 			name = Animation;
@@ -473,6 +476,7 @@
 				95601F9D23E998E500DBD8CD /* animation1.json in Resources */,
 				95E26F4C23E9913C00A10C19 /* animation2.json in Resources */,
 				95E26F3223E8752D00A10C19 /* Main.storyboard in Resources */,
+				95624DF623EC34F200B795DC /* animation4.json in Resources */,
 				95601FA323EAEE9900DBD8CD /* animation3.json in Resources */,
 				48F48E7D21E406B100D9E9A6 /* BasicLayers.json in Resources */,
 				48F48E7F21E406B100D9E9A6 /* AnimatedTransforms.json in Resources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import Lottie
 
 class ViewController: UIViewController {
@@ -14,14 +15,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var animationView: AnimationView!
     
     var pickedAssetResources = [String: AssetResource]()
+    var defaultTexts = [String: String]()
     var customTexts = [String: String]()
     var currentPickingAssetResourceID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let animation = Animation.filepath(Bundle.main.url(forResource: "animation3", withExtension: "json")!.path)
-        
+        let animation = Animation.filepath(Bundle.main.url(forResource: "animation4", withExtension: "json")!.path)
+
         animationView.animation = animation
         
         animationView.loopMode = .loop
@@ -51,6 +53,7 @@ extension ViewController: AnimationViewDelegate {
         picker.delegate = self
         picker.sourceType = .savedPhotosAlbum
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
+        picker.videoExportPreset = AVAssetExportPresetPassthrough
         picker.allowsEditing = false
         present(picker, animated: true)
     }
@@ -63,7 +66,8 @@ extension ViewController: AnimationViewDelegate {
 extension ViewController: AnimationTextProvider {
     
     func textFor(keypathName: String, sourceText: String) -> String {
-        return customTexts[keypathName] ?? keypathName
+        defaultTexts[keypathName] = sourceText
+        return customTexts[keypathName] ?? sourceText
     }
 }
 
@@ -94,18 +98,34 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-extension ViewController: TextEditingDelegate {
+extension ViewController: AnimationViewTextEditingDelegate {
     
-    public func insertText(_ text: String, forKeypathName keypathName: String) {
+    func animationView(_ animationView: AnimationView, didDeleteBackwardForKeypathName keypathName: String) {
         if customTexts[keypathName] == nil {
-            customTexts[keypathName] = keypathName
+            customTexts[keypathName] = defaultTexts[keypathName]
+        }
+        customTexts[keypathName] = String(customTexts[keypathName]!.dropLast())
+    }
+    func animationView(_ animationView: AnimationView, didInsertText text: String, forKeypathName keypathName: String) {
+        if customTexts[keypathName] == nil {
+            customTexts[keypathName] = defaultTexts[keypathName]
         }
         customTexts[keypathName] = String(customTexts[keypathName]!.appending(text))
     }
-    public func deleteBackwardForKeypathName(_ keypathName: String) {
-        if customTexts[keypathName] == nil {
-            customTexts[keypathName] = keypathName
+    func animationView(_ animationView: AnimationView, didEndEditingTextWithKeypathName keypathName: String) {
+        guard let text = customTexts[keypathName] else {
+            return
         }
-        customTexts[keypathName] = String(customTexts[keypathName]!.dropLast())
+        if text.isEmpty {
+            customTexts[keypathName] = defaultTexts[keypathName]
+            animationView.reloadTexts()
+        }
+    }
+    
+    public func insertText(_ text: String, forKeypathName keypathName: String) {
+        
+    }
+    public func deleteBackwardForKeypathName(_ keypathName: String) {
+        
     }
 }

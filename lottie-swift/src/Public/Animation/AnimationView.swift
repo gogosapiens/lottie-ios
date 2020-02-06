@@ -55,9 +55,10 @@ public protocol AnimationViewDelegate: class {
     func animationView(_ animationView: AnimationView, didTapTextWithKeypathName textKeypathName: String)
 }
 
-public protocol TextEditingDelegate: class {
-    func insertText(_ text: String, forKeypathName keypathName: String)
-    func deleteBackwardForKeypathName(_ keypathName: String)
+public protocol AnimationViewTextEditingDelegate: class {
+    func animationView(_ animationView: AnimationView, didInsertText text: String, forKeypathName keypathName: String)
+    func animationView(_ animationView: AnimationView, didDeleteBackwardForKeypathName keypathName: String)
+    func animationView(_ animationView: AnimationView, didEndEditingTextWithKeypathName keypathName: String)
 }
 
 @IBDesignable
@@ -70,22 +71,20 @@ final public class AnimationView: LottieView, UIKeyInput {
         guard let textEditingKeypathName = textEditingKeypathName else {
             return
         }
-        textEditingDelegate?.insertText(text, forKeypathName: textEditingKeypathName)
+        textEditingDelegate?.animationView(self, didInsertText: text, forKeypathName: textEditingKeypathName)
         reloadTexts()
-        forceDisplayUpdate()
     }
     
     public func deleteBackward() {
         guard let textEditingKeypathName = textEditingKeypathName else {
             return
         }
-        textEditingDelegate?.deleteBackwardForKeypathName(textEditingKeypathName)
+        textEditingDelegate?.animationView(self, didDeleteBackwardForKeypathName: textEditingKeypathName)
         reloadTexts()
-        forceDisplayUpdate()
     }
     
     public weak var delegate: AnimationViewDelegate?
-    public weak var textEditingDelegate: TextEditingDelegate?
+    public weak var textEditingDelegate: AnimationViewTextEditingDelegate?
     
     var textEditingKeypathName: String?
     
@@ -100,12 +99,11 @@ final public class AnimationView: LottieView, UIKeyInput {
     
     public override func resignFirstResponder() -> Bool {
         play()
-        if textProvider.textFor(keypathName: textEditingKeypathName!, sourceText: "").isEmpty {
-            textEditingDelegate?.insertText("Text", forKeypathName: textEditingKeypathName!)
-            reloadTexts()
-            forceDisplayUpdate()
+        guard let textEditingKeypathName = textEditingKeypathName else {
+            return super.resignFirstResponder()
         }
-        textEditingKeypathName = nil
+        textEditingDelegate?.animationView(self, didEndEditingTextWithKeypathName: textEditingKeypathName)
+        self.textEditingKeypathName = nil
         return super.resignFirstResponder()
     }
     
@@ -156,7 +154,7 @@ final public class AnimationView: LottieView, UIKeyInput {
                     if rect.contains(touchLocation) {
                         sublayers += [imageCompositionLayer]
                     }
-                } else if let textCompositionLayer = sublayer as? TextCompositionLayer {
+                } else if let textCompositionLayer = sublayer as? TextCompositionLayer, textCompositionLayer.editable {
                     let rect = textCompositionLayer.textLayer.convert(textCompositionLayer.textLayer.bounds, to: self.layer)
                     if rect.contains(touchLocation) {
                         sublayers += [textCompositionLayer]
@@ -509,6 +507,7 @@ final public class AnimationView: LottieView, UIKeyInput {
     
     public func reloadTexts() {
         animationLayer?.reloadTexts()
+        forceDisplayUpdate()
     }
     
     /// Forces the AnimationView to redraw its contents.
