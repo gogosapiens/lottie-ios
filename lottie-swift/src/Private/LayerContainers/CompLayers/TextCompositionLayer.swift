@@ -111,7 +111,7 @@ final class TextCompositionLayer: CompositionLayer {
     
     let documentUpdate = textDocument.hasUpdate(frame: frame)
     let animatorUpdate = rootNode?.updateContents(frame, forceLocalUpdate: forceUpdates) ?? false
-    guard documentUpdate == true || animatorUpdate == true else { return }
+    guard documentUpdate == true || animatorUpdate == true || forceUpdates else { return }
     
     let text = textDocument.value(frame: frame) as! TextDocument
     let anchorPoint = interpolatableAnchorPoint?.value(frame: frame) as! Vector3D

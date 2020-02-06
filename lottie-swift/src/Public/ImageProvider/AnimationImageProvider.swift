@@ -18,6 +18,24 @@ import CoreGraphics
  Additionally custom Image Providers can be made to load images from a URL,
  or to Cache images.
  */
+
+public enum AssetResource {
+    case image(CGImage)
+    case video(URL)
+    
+    init?(url: URL) {
+        if url.lastPathComponent.lowercased() == "mp4" || url.lastPathComponent.lowercased() == "mov" {
+            self = .video(url)
+        } else {
+            if let image = UIImage(contentsOfFile: url.path), let cgImage = image.cgImage {
+                self = .image(cgImage)
+            } else {
+                return nil
+            }
+        }
+    }
+}
+
 public protocol AnimationImageProvider {
-  func imageForAsset(asset: ImageAsset) -> URL?
+  func imageForAsset(asset: ImageAsset) -> AssetResource?
 }

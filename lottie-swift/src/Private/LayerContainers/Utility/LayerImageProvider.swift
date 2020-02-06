@@ -43,18 +43,52 @@ final class LayerImageProvider {
     func reloadImages() {
         for imageLayer in imageLayers {
             if let asset = imageAssets[imageLayer.imageReferenceID] {
-                if let url = imageProvider.imageForAsset(asset: asset) {
-                    if asset.name.hasSuffix(".mp4") {
+                if let assetResource = imageProvider.imageForAsset(asset: asset) {
+                    switch assetResource {
+                    case .video(let url):
                         let player = AVPlayer(url: url)
                         player.actionAtItemEnd = .none
                         NotificationCenter.default.addObserver(self, selector: #selector(videoDidPlayToEndTime(_:)), name: .AVPlayerItemDidPlayToEndTime, object: nil)
-                        
                         imageLayer.playerLayer.player = player
-                        player.play()
-                    } else {
-                        imageLayer.image = UIImage(contentsOfFile: url.path)?.cgImage
+                        imageLayer.image = nil
+                    case .image(let image):
+                        imageLayer.image = image
+                        imageLayer.playerLayer.player = nil
                     }
                 }
+            }
+        }
+    }
+    
+    func pausePlayers() {
+        for imageLayer in imageLayers {
+            if let player = imageLayer.playerLayer.player {
+                player.pause()
+            }
+        }
+    }
+    
+    func stopPlayers() {
+        for imageLayer in imageLayers {
+            if let player = imageLayer.playerLayer.player {
+                player.seek(to: .zero)
+                player.pause()
+            }
+        }
+    }
+    
+    func playPlayers() {
+        for imageLayer in imageLayers {
+            if let player = imageLayer.playerLayer.player {
+                player.play()
+            }
+        }
+    }
+    
+    func seekPlayersTo(_ time: CMTime) {
+        for imageLayer in imageLayers {
+            if let player = imageLayer.playerLayer.player {
+                player.seek(to: time)
             }
         }
     }
@@ -62,7 +96,7 @@ final class LayerImageProvider {
     @objc func videoDidPlayToEndTime(_ notification: NSNotification) {
         for imageLayer in imageLayers {
             if imageLayer.playerLayer.player?.currentItem == notification.object as? AVPlayerItem {
-                imageLayer.playerLayer.player?.seek(to: CMTime.zero)
+                imageLayer.playerLayer.player?.seek(to: .zero)
             }
         }
     }

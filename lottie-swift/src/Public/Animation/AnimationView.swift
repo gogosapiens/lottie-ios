@@ -50,8 +50,125 @@ extension LottieLoopMode: Equatable {
     }
 }
 
+public protocol AnimationViewDelegate: class {
+    func animationView(_ animationView: AnimationView, didTapAssetWithReferenceID imageReferenceID: String)
+    func animationView(_ animationView: AnimationView, didTapTextWithKeypathName textKeypathName: String)
+}
+
+public protocol TextEditingDelegate: class {
+    func insertText(_ text: String, forKeypathName keypathName: String)
+    func deleteBackwardForKeypathName(_ keypathName: String)
+}
+
 @IBDesignable
-final public class AnimationView: LottieView {
+final public class AnimationView: LottieView, UIKeyInput {
+    public var hasText: Bool {
+        return true
+    }
+    
+    public func insertText(_ text: String) {
+        guard let textEditingKeypathName = textEditingKeypathName else {
+            return
+        }
+        textEditingDelegate?.insertText(text, forKeypathName: textEditingKeypathName)
+        reloadTexts()
+        forceDisplayUpdate()
+    }
+    
+    public func deleteBackward() {
+        guard let textEditingKeypathName = textEditingKeypathName else {
+            return
+        }
+        textEditingDelegate?.deleteBackwardForKeypathName(textEditingKeypathName)
+        reloadTexts()
+        forceDisplayUpdate()
+    }
+    
+    public weak var delegate: AnimationViewDelegate?
+    public weak var textEditingDelegate: TextEditingDelegate?
+    
+    var textEditingKeypathName: String?
+    
+    public override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    public override func becomeFirstResponder() -> Bool {
+        pause()
+        return super.becomeFirstResponder()
+    }
+    
+    public override func resignFirstResponder() -> Bool {
+        play()
+        if textProvider.textFor(keypathName: textEditingKeypathName!, sourceText: "").isEmpty {
+            textEditingDelegate?.insertText("Text", forKeypathName: textEditingKeypathName!)
+            reloadTexts()
+            forceDisplayUpdate()
+        }
+        textEditingKeypathName = nil
+        return super.resignFirstResponder()
+    }
+    
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+    }
+
+    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+    }
+    
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        guard !isFirstResponder else {
+            _ = resignFirstResponder()
+            return
+        }
+        guard let touch = touches.first else {
+            return
+        }
+        
+        let editableLayers = editableCompositionLayersForTouch(touch)
+        
+        if let imageCompositionLayer = editableLayers.last as? ImageCompositionLayer {
+            delegate?.animationView(self, didTapAssetWithReferenceID: imageCompositionLayer.imageReferenceID)
+        } else if let textCompositionLayer = editableLayers.last as? TextCompositionLayer {
+            //                delegate?.animationView(self, didTapTextWithKeypathName: textCompositionLayer.keypathName)
+            textEditingKeypathName = textCompositionLayer.keypathName
+            _ = becomeFirstResponder()
+        }
+        
+    }
+    
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+    }
+    
+    func editableCompositionLayersForTouch(_ touch: UITouch) -> [CompositionLayer] {
+        guard let animationLayer = animationLayer else {
+            return []
+        }
+        let touchLocation = touch.location(in: self)
+        var sublayers = [CompositionLayer]()
+        func addSublayersOfLayer(layer: CALayer) {
+            layer.sublayers?.forEach { sublayer in
+                if let imageCompositionLayer = sublayer as? ImageCompositionLayer {
+                    let rect = imageCompositionLayer.contentsLayer.convert(imageCompositionLayer.contentsLayer.bounds, to: self.layer)
+                    if rect.contains(touchLocation) {
+                        sublayers += [imageCompositionLayer]
+                    }
+                } else if let textCompositionLayer = sublayer as? TextCompositionLayer {
+                    let rect = textCompositionLayer.textLayer.convert(textCompositionLayer.textLayer.bounds, to: self.layer)
+                    if rect.contains(touchLocation) {
+                        sublayers += [textCompositionLayer]
+                    }
+                }
+                addSublayersOfLayer(layer: sublayer)
+            }
+        }
+        addSublayersOfLayer(layer: layer)
+        return sublayers
+    }
+    
     
     // MARK: - Public Properties
     
@@ -91,6 +208,7 @@ final public class AnimationView: LottieView {
      */
     public var imageProvider: AnimationImageProvider {
         didSet {
+            animationLayer?.imageProvider = imageProvider
             reloadImages()
         }
     }
@@ -387,6 +505,10 @@ final public class AnimationView: LottieView {
     /// Reloads the images supplied to the animation from the `imageProvider`
     public func reloadImages() {
         animationLayer?.reloadImages()
+    }
+    
+    public func reloadTexts() {
+        animationLayer?.reloadTexts()
     }
     
     /// Forces the AnimationView to redraw its contents.
@@ -875,7 +997,6 @@ final public class AnimationView: LottieView {
     
     /// Updates an in flight animation.
     fileprivate func updateInFlightAnimation() {
-        print(#function)
         guard let animationContext = animationContext else { return }
         
         guard animationContext.closure.animationState != .complete else {
@@ -965,6 +1086,7 @@ final public class AnimationView: LottieView {
         layerAnimation.delegate = animationContext.closure
         animationContext.closure.animationLayer = animationlayer
         animationContext.closure.animationKey = activeAnimationName
+        animationContext.closure.loopMode = loopMode
         
         animationlayer.add(layerAnimation, forKey: activeAnimationName)
         updateRasterizationState()

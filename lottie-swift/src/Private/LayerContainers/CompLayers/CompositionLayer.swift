@@ -20,7 +20,7 @@ class CompositionLayer: CALayer, KeypathSearchable {
   
   let contentsLayer: CALayer = CALayer()
     
-    let playerLayer = AVPlayerLayer()
+    
   
   let maskLayer: MaskContainerLayer?
   
@@ -90,22 +90,6 @@ class CompositionLayer: CALayer, KeypathSearchable {
     if let maskLayer = maskLayer {
       contentsLayer.mask = maskLayer
     }
-    
-    playerLayer.anchorPoint = .zero
-    playerLayer.bounds = CGRect(origin: .zero, size: contentsLayer.frame.size)
-    playerLayer.actions = [
-      "opacity" : NSNull(),
-      "transform" : NSNull(),
-      "bounds" : NSNull(),
-      "anchorPoint" : NSNull(),
-      "sublayerTransform" : NSNull(),
-      "hidden" : NSNull()
-    ]
-    addSublayer(playerLayer)
-    
-    if let maskLayer = maskLayer {
-      playerLayer.mask = maskLayer
-    }
   }
     
   
@@ -141,10 +125,6 @@ class CompositionLayer: CALayer, KeypathSearchable {
     contentsLayer.transform = transformNode.globalTransform
     contentsLayer.opacity = transformNode.opacity
     contentsLayer.isHidden = !layerVisible
-    
-    playerLayer.transform = transformNode.globalTransform
-    playerLayer.opacity = transformNode.opacity
-    playerLayer.isHidden = !layerVisible
     
     layerDelegate?.frameUpdated(frame: frame)
   }
