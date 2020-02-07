@@ -154,7 +154,7 @@ final public class AnimationView: LottieView, UIKeyInput {
                     if rect.contains(touchLocation) {
                         sublayers += [imageCompositionLayer]
                     }
-                } else if let textCompositionLayer = sublayer as? TextCompositionLayer, textCompositionLayer.editable {
+                } else if let textCompositionLayer = sublayer as? TextCompositionLayer, textCompositionLayer.isEditable {
                     let rect = textCompositionLayer.textLayer.convert(textCompositionLayer.textLayer.bounds, to: self.layer)
                     if rect.contains(touchLocation) {
                         sublayers += [textCompositionLayer]

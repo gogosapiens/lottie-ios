@@ -55,15 +55,17 @@ class AnimationCompletionDelegate: NSObject, CAAnimationDelegate {
     public func animationDidStart(_ anim: CAAnimation) {
         guard ignoreDelegate == false else { return }
         if let animationLayer = animationLayer {
-            startTimer = Timer.scheduledTimer(withTimeInterval: anim.duration - (CACurrentMediaTime() - anim.beginTime), repeats: false) { [unowned self] _ in
-                self.loopTimer = Timer.scheduledTimer(withTimeInterval: anim.duration, repeats: true) { [weak self] timer in
-                    guard self?.animationState == .playing else {
-                        timer.invalidate()
-                        return
+            if #available(iOS 10.0, *) {
+                startTimer = Timer.scheduledTimer(withTimeInterval: anim.duration - (CACurrentMediaTime() - anim.beginTime), repeats: false) { [unowned self] _ in
+                    self.loopTimer = Timer.scheduledTimer(withTimeInterval: anim.duration, repeats: true) { [weak self] timer in
+                        guard self?.animationState == .playing else {
+                            timer.invalidate()
+                            return
+                        }
+                        animationLayer.seekPlayersTo(.zero)
                     }
                     animationLayer.seekPlayersTo(.zero)
                 }
-                animationLayer.seekPlayersTo(.zero)
             }
             animationLayer.seekPlayersTo(CMTime(seconds: CACurrentMediaTime() - anim.beginTime, preferredTimescale: 1000))
             animationLayer.playPlayers()
