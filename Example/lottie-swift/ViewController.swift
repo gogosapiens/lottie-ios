@@ -18,11 +18,12 @@ class ViewController: UIViewController {
     var defaultTexts = [String: String]()
     var customTexts = [String: String]()
     var currentPickingAssetResourceID: String?
+    var colors = [#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let animation = Animation.filepath(Bundle.main.url(forResource: "animation4", withExtension: "json")!.path)
+        let animation = Animation.filepath(Bundle.main.url(forResource: "animation6", withExtension: "json")!.path)
 
         animationView.animation = animation
         
@@ -30,9 +31,15 @@ class ViewController: UIViewController {
         animationView.backgroundBehavior = .pauseAndRestore
         animationView.textProvider = self
         animationView.imageProvider = self
+        animationView.colorProvider = self
         animationView.reloadImages()
         animationView.delegate = self
         animationView.textEditingDelegate = self
+        
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            self.colors = [#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)]
+            self.animationView.reloadColors()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -127,5 +134,11 @@ extension ViewController: AnimationViewTextEditingDelegate {
     }
     public func deleteBackwardForKeypathName(_ keypathName: String) {
         
+    }
+}
+
+extension ViewController: AnimationColorProvider {
+    func colorForIndex(_ index: Int) -> CGColor {
+        return colors[index].cgColor
     }
 }

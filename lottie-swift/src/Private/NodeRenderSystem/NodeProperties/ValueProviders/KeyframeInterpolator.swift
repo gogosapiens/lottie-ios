@@ -14,7 +14,7 @@ final class KeyframeInterpolator<ValueType>: AnyValueProvider where ValueType: I
   init(keyframes: [Keyframe<ValueType>]) {
     self.keyframes = keyframes
   }
-  let keyframes: [Keyframe<ValueType>]
+  var keyframes: [Keyframe<ValueType>]
   
   var valueType: Any.Type {
     return ValueType.self

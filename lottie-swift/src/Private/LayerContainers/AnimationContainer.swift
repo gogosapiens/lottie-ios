@@ -29,12 +29,25 @@ final class AnimationContainer: CALayer {
         }
     }
     
+    var colorProvider: AnimationColorProvider {
+        get {
+            return layerColorProvider.colorProvider
+        }
+        set {
+            layerColorProvider.colorProvider = newValue
+        }
+    }
+    
     func reloadImages() {
         layerImageProvider.reloadImages()
     }
     
     func reloadTexts() {
         layerTextProvider.reloadTexts()
+    }
+    
+    func reloadColors() {
+        layerColorProvider.reloadColors()
     }
     
     func pausePlayers() {
@@ -122,14 +135,16 @@ final class AnimationContainer: CALayer {
     var animationLayers: ContiguousArray<CompositionLayer>
     fileprivate let layerImageProvider: LayerImageProvider
     fileprivate let layerTextProvider: LayerTextProvider
+    fileprivate let layerColorProvider: LayerColorProvider
     
-    init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider) {
+    init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider, colorProvider: AnimationColorProvider) {
         self.layerImageProvider = LayerImageProvider(imageProvider: imageProvider, assets: animation.assetLibrary?.imageAssets)
         self.layerTextProvider = LayerTextProvider(textProvider: textProvider)
+        self.layerColorProvider = LayerColorProvider(colorProvider: colorProvider)
         self.animationLayers = []
         super.init()
         bounds = animation.bounds
-        let layers = animation.layers.initializeCompositionLayers(assetLibrary: animation.assetLibrary, layerImageProvider: layerImageProvider, textProvider: textProvider, frameRate: CGFloat(animation.framerate))
+        let layers = animation.layers.initializeCompositionLayers(assetLibrary: animation.assetLibrary, layerImageProvider: layerImageProvider, textProvider: textProvider, colorProvider: colorProvider, frameRate: CGFloat(animation.framerate))
         
         var imageLayers = [ImageCompositionLayer]()
         var textLayers = [TextCompositionLayer]()
@@ -163,6 +178,7 @@ final class AnimationContainer: CALayer {
         layerImageProvider.reloadImages()
         layerTextProvider.addTextLayers(textLayers)
         layerTextProvider.reloadTexts()
+        layerColorProvider.addColorLayers(layers.reversed())
         setNeedsDisplay()
     }
     
@@ -171,6 +187,7 @@ final class AnimationContainer: CALayer {
         self.animationLayers = []
         self.layerImageProvider = LayerImageProvider(imageProvider: BlankImageProvider(), assets: nil)
         self.layerTextProvider = LayerTextProvider(textProvider: DefaultTextProvider())
+        self.layerColorProvider = LayerColorProvider(colorProvider: DefaultColorProvider())
         super.init(layer: layer)
         
         guard let animationLayer = layer as? AnimationContainer else { return }
