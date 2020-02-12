@@ -220,6 +220,16 @@ final public class AnimationView: LottieView, UIKeyInput {
             reloadTexts()
         }
     }
+    /**
+     Sets the font provider for animation view. A font provider provides the
+     animation with values for text layers
+     */
+    public var fontProvider: AnimationFontProvider {
+        didSet {
+            animationLayer?.fontProvider = fontProvider
+            reloadTexts()
+        }
+    }
     
     /// Returns `true` if the animation is currently playing.
     public var isAnimationPlaying: Bool {
@@ -507,6 +517,7 @@ final public class AnimationView: LottieView, UIKeyInput {
     
     public func reloadTexts() {
         animationLayer?.reloadTexts()
+        animationLayer?.reloadFonts()
         forceDisplayUpdate()
     }
     
@@ -704,10 +715,11 @@ final public class AnimationView: LottieView, UIKeyInput {
     // MARK: - Public (Initializers)
     
     /// Initializes a LottieView with an animation.
-    public init(animation: Animation?, imageProvider: AnimationImageProvider? = nil, textProvider: AnimationTextProvider = DefaultTextProvider()) {
+    public init(animation: Animation?, imageProvider: AnimationImageProvider? = nil, textProvider: AnimationTextProvider = DefaultTextProvider(), fontProvider: AnimationFontProvider = DefaultFontProvider()) {
         self.animation = animation
         self.imageProvider = imageProvider ?? BundleImageProvider(bundle: Bundle.main, searchPath: nil)
         self.textProvider = textProvider
+        self.fontProvider = fontProvider
         super.init(frame: .zero)
         commonInit()
         makeAnimationLayer()
@@ -720,6 +732,7 @@ final public class AnimationView: LottieView, UIKeyInput {
         self.animation = nil
         self.imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
         self.textProvider = DefaultTextProvider()
+        self.fontProvider = DefaultFontProvider()
         super.init(frame: .zero)
         commonInit()
     }
@@ -728,6 +741,7 @@ final public class AnimationView: LottieView, UIKeyInput {
         self.animation = nil
         self.imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
         self.textProvider = DefaultTextProvider()
+        self.fontProvider = DefaultFontProvider()
         super.init(frame: .zero)
         commonInit()
     }
@@ -735,6 +749,7 @@ final public class AnimationView: LottieView, UIKeyInput {
     required public init?(coder aDecoder: NSCoder) {
         self.imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
         self.textProvider = DefaultTextProvider()
+        self.fontProvider = DefaultFontProvider()
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -905,7 +920,7 @@ final public class AnimationView: LottieView, UIKeyInput {
             return
         }
         
-        let animationLayer = AnimationContainer(animation: animation, imageProvider: imageProvider, textProvider: textProvider)
+        let animationLayer = AnimationContainer(animation: animation, imageProvider: imageProvider, textProvider: textProvider, fontProvider: fontProvider)
         animationLayer.renderScale = self.screenScale
         viewLayer?.addSublayer(animationLayer)
         self.animationLayer = animationLayer

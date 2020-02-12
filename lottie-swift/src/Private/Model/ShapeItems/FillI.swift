@@ -35,7 +35,6 @@ final class Fill: ShapeItem {
     self.opacity = try container.decode(KeyframeGroup<Vector1D>.self, forKey: .opacity)
     self.color = try container.decode(KeyframeGroup<Color>.self, forKey: .color)
     self.fillRule = try container.decodeIfPresent(FillRule.self, forKey: .fillRule) ?? .nonZeroWinding
-    print(color.keyframes)
     try super.init(from: decoder)
   }
   

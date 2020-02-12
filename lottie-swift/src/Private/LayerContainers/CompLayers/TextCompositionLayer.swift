@@ -50,7 +50,7 @@ extension TextJustification {
 
 final class TextCompositionLayer: CompositionLayer {
     
-    let rootNode: TextAnimatorNode?
+    let animatorNodes: [TextAnimatorNode]
     let textDocument: KeyframeInterpolator<TextDocument>?
     let interpolatableAnchorPoint: KeyframeInterpolator<Vector3D>?
     let interpolatableScale: KeyframeInterpolator<Vector3D>?
@@ -58,16 +58,18 @@ final class TextCompositionLayer: CompositionLayer {
     let textLayer: DisabledTextLayer = DisabledTextLayer()
     let textStrokeLayer: DisabledTextLayer = DisabledTextLayer()
     var textProvider: AnimationTextProvider
+    var fontProvider: AnimationFontProvider
     
-    init(textLayer: TextLayerModel, textProvider: AnimationTextProvider) {
-        var rootNode: TextAnimatorNode?
+    init(textLayer: TextLayerModel, textProvider: AnimationTextProvider, fontProvider: AnimationFontProvider) {
+        var animatorNodes = [TextAnimatorNode]()
         for animator in textLayer.animators {
-            rootNode = TextAnimatorNode(parentNode: rootNode, textAnimator: animator)
+            animatorNodes.append(TextAnimatorNode(parentNode: animatorNodes.last, textAnimator: animator))
         }
-        self.rootNode = rootNode
+        self.animatorNodes = animatorNodes
         self.textDocument = KeyframeInterpolator(keyframes: textLayer.text.keyframes)
         
         self.textProvider = textProvider
+        self.fontProvider = fontProvider
         
         // TODO: this has to be somewhere that can be interpolated
         // TODO: look for inspiration from other composite layer
@@ -81,6 +83,8 @@ final class TextCompositionLayer: CompositionLayer {
         self.textStrokeLayer.masksToBounds = false
         self.textLayer.isWrapped = true
         self.textStrokeLayer.isWrapped = true
+        animatorNodes.forEach({ childKeypaths.append($0.textAnimatorProperties) })
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,15 +96,17 @@ final class TextCompositionLayer: CompositionLayer {
         guard let layer = layer as? TextCompositionLayer else {
             fatalError("init(layer:) Wrong Layer Class")
         }
-        self.rootNode = nil
+        self.animatorNodes = []
         self.textDocument = nil
         
         self.textProvider = DefaultTextProvider()
+        self.fontProvider = DefaultFontProvider()
         
         self.interpolatableAnchorPoint = nil
         self.interpolatableScale = nil
         
         super.init(layer: layer)
+        animatorNodes.forEach({ childKeypaths.append($0.textAnimatorProperties) })
     }
     
     override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
@@ -110,27 +116,29 @@ final class TextCompositionLayer: CompositionLayer {
         textStrokeLayer.contentsScale = self.renderScale
         
         let documentUpdate = textDocument.hasUpdate(frame: frame)
-        let animatorUpdate = rootNode?.updateContents(frame, forceLocalUpdate: forceUpdates) ?? false
+        let animatorUpdate = animatorNodes.map({ $0.updateContents(frame, forceLocalUpdate: forceUpdates) }).contains(true)
         guard documentUpdate == true || animatorUpdate == true || forceUpdates else { return }
         
         let text = textDocument.value(frame: frame) as! TextDocument
         let anchorPoint = interpolatableAnchorPoint?.value(frame: frame) as! Vector3D
         
         interpolatableScale?.value(frame: frame)
-        rootNode?.rebuildOutputs(frame: frame)
         
-        let fillColor = rootNode?.textOutputNode.fillColor ?? text.fillColorData.cgColorValue
-        let strokeColor = rootNode?.textOutputNode.strokeColor ?? text.strokeColorData?.cgColorValue
-        let strokeWidth = rootNode?.textOutputNode.strokeWidth ?? CGFloat(text.strokeWidth ?? 0)
-        let tracking = (CGFloat(text.fontSize) * (rootNode?.textOutputNode.tracking ?? CGFloat(text.tracking))) / 1000.0
+        animatorNodes.forEach({ $0.rebuildOutputs(frame: frame) })
         
-        let matrix = rootNode?.textOutputNode.xform ?? CATransform3DIdentity
-        let ctFont = CTFontCreateWithName(text.fontFamily as CFString, CGFloat(text.fontSize), nil)
+        let fillColor = animatorNodes.compactMap({ $0.textOutputNode.fillColor }).last ?? text.fillColorData.cgColorValue
+        let strokeColor = animatorNodes.compactMap({ $0.textOutputNode.strokeColor }).last ?? text.strokeColorData?.cgColorValue
+        let strokeWidth = animatorNodes.compactMap({ $0.textOutputNode.strokeWidth }).last ?? CGFloat(text.strokeWidth ?? 0)
+        let tracking = (CGFloat(text.fontSize) * (animatorNodes.compactMap({ $0.textOutputNode.tracking }).last ?? CGFloat(text.tracking))) / 1000.0
+        
+        let matrix = animatorNodes.compactMap({ $0.textOutputNode.xform }).last ?? CATransform3DIdentity
+        
+        let font = fontProvider.fontFor(keypathName: self.keypathName, sourceFontName: text.fontFamily, size: CGFloat(text.fontSize))
         
         let textString = textProvider.textFor(keypathName: self.keypathName, sourceText: text.text)
-        
+        print(fontProvider)
         var attributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.font: ctFont,
+            NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: fillColor,
             NSAttributedString.Key.kern: tracking,
         ]
@@ -166,7 +174,7 @@ final class TextCompositionLayer: CompositionLayer {
                                                                 nil)
         }
         
-        let baselinePosition = CTFontGetAscent(ctFont)
+        let baselinePosition = font.ascender
         let textAnchor: CGPoint
         switch text.justification {
         case .left:
@@ -189,7 +197,7 @@ final class TextCompositionLayer: CompositionLayer {
                 contentsLayer.addSublayer(textLayer)
             }
             textStrokeLayer.anchorPoint = normalizedAnchor
-            textStrokeLayer.opacity = Float(rootNode?.textOutputNode.opacity ?? 1)
+            textStrokeLayer.opacity = Float(animatorNodes.compactMap({ $0.textOutputNode.opacity }).last ?? 1)
             textStrokeLayer.transform = CATransform3DIdentity
             textStrokeLayer.frame = CGRect(origin: .zero, size: size)
             textStrokeLayer.position = text.textFramePosition?.pointValue ?? CGPoint.zero
@@ -199,7 +207,7 @@ final class TextCompositionLayer: CompositionLayer {
         }
         
         textLayer.anchorPoint = normalizedAnchor
-        textLayer.opacity = Float(rootNode?.textOutputNode.opacity ?? 1)
+        textLayer.opacity = Float(animatorNodes.compactMap({ $0.textOutputNode.opacity }).last ?? 1)
         textLayer.transform = CATransform3DIdentity
         textLayer.frame = CGRect(origin: .zero, size: size)
         textLayer.position = text.textFramePosition?.pointValue ?? CGPoint.zero

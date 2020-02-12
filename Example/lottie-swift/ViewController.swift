@@ -23,21 +23,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let animation = Animation.filepath(Bundle.main.url(forResource: "animation9", withExtension: "json")!.path)
+        let animation = Animation.filepath(Bundle.main.url(forResource: "animation12", withExtension: "json")!.path)
 
         animationView.animation = animation
         
         animationView.loopMode = .loop
         animationView.backgroundBehavior = .pauseAndRestore
         animationView.textProvider = self
+        animationView.fontProvider = self
         animationView.imageProvider = self
         animationView.reloadImages()
         animationView.delegate = self
         animationView.textEditingDelegate = self
         
-        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Color"))
-        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill 1.Color"))
-        animationView.setValueProvider(SizeValueProvider(CGSize(width: 100, height: 100)), keypath: AnimationKeypath(keypath: "Shape Layer 1.Ellipse Path 1.Size"))
+        animationView.setValueProvider(ColorValueProvider(Color(r: 1, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_1.Fill Color"))
+        animationView.setValueProvider(ColorValueProvider(Color(r: 1, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_1.Stroke Color"))
+        animationView.setValueProvider(ColorValueProvider(Color(r: 1, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_1.Color"))
+        
+        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Fill Color"))
+        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Stroke Color"))
+        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Color"))
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -126,11 +131,11 @@ extension ViewController: AnimationViewTextEditingDelegate {
             animationView.reloadTexts()
         }
     }
+}
+
+extension ViewController: AnimationFontProvider {
     
-    public func insertText(_ text: String, forKeypathName keypathName: String) {
-        
-    }
-    public func deleteBackwardForKeypathName(_ keypathName: String) {
-        
+    func fontFor(keypathName: String, sourceFontName: String, size: CGFloat) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .black)
     }
 }

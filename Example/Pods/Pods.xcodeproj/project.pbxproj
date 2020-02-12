@@ -412,6 +412,8 @@
 		46EB2E00002CF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E00001EA0 /* Foundation.framework */; };
 		46EB2E00002D60 /* Pods-lottie-swift_tvOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EB2E00002D50 /* Pods-lottie-swift_tvOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46EB2E00002DB0 /* Pods-lottie-swift_tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EB2E00002DA0 /* Pods-lottie-swift_tvOS-dummy.m */; };
+		95C8AACD23F43A490094B514 /* AnimationFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8AACC23F43A490094B514 /* AnimationFontProvider.swift */; };
+		95C8AACF23F43B1E0094B514 /* LayerFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8AACE23F43B1E0094B514 /* LayerFontProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -650,6 +652,8 @@
 		5CBAEAF1D52528C70D31576C2FD2253E /* Pods_lottie_swift_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE012080E255559C105B0699451AE31 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B5A455553977229E8D85D13C54AA54 /* Pods_lottie_swift_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C8AACC23F43A490094B514 /* AnimationFontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFontProvider.swift; sourceTree = "<group>"; };
+		95C8AACE23F43B1E0094B514 /* LayerFontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerFontProvider.swift; sourceTree = "<group>"; };
 		9EAA9105ACA723812B2965646AFFACA4 /* Pods_lottie_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA8AF97457829146B4F4122C2762D2 /* Pods_lottie_swift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -833,6 +837,7 @@
 				46EB2E000001B0 /* InvertedMatteLayer.swift */,
 				46EB2E000001C0 /* LayerImageProvider.swift */,
 				46EB2E000001D0 /* LayerTextProvider.swift */,
+				95C8AACE23F43B1E0094B514 /* LayerFontProvider.swift */,
 				46EB2E000001E0 /* LayerTransformNode.swift */,
 			);
 			path = Utility;
@@ -1164,6 +1169,7 @@
 				46EB2E00000A50 /* MacOS */,
 				46EB2E00000AA0 /* Primitives */,
 				46EB2E00000AE0 /* TextProvider */,
+				95C8AACB23F43A250094B514 /* FontProvider */,
 			);
 			name = Public;
 			path = "lottie-swift/src/Public";
@@ -1405,6 +1411,14 @@
 			);
 			name = "Pods-lottie-swift_tvOS";
 			path = "Target Support Files/Pods-lottie-swift_tvOS";
+			sourceTree = "<group>";
+		};
+		95C8AACB23F43A250094B514 /* FontProvider */ = {
+			isa = PBXGroup;
+			children = (
+				95C8AACC23F43A490094B514 /* AnimationFontProvider.swift */,
+			);
+			path = FontProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1731,6 +1745,7 @@
 				46EB2E00000EC0 /* FillI.swift in Sources */,
 				46EB2E00001150 /* FillNode.swift in Sources */,
 				46EB2E000010B0 /* FillRenderer.swift in Sources */,
+				95C8AACD23F43A490094B514 /* AnimationFontProvider.swift in Sources */,
 				46EB2E00001370 /* FloatValueProvider.swift in Sources */,
 				46EB2E00000F90 /* Font.swift in Sources */,
 				46EB2E00000FA0 /* Glyph.swift in Sources */,
@@ -1763,6 +1778,7 @@
 				46EB2E00000E20 /* LayerModel.swift in Sources */,
 				46EB2E00000D70 /* LayerTextProvider.swift in Sources */,
 				46EB2E00000D80 /* LayerTransformNode.swift in Sources */,
+				95C8AACF23F43B1E0094B514 /* LayerFontProvider.swift in Sources */,
 				46EB2E00001520 /* lottie-ios-iOS-dummy.m in Sources */,
 				46EB2E00001440 /* LottieView.swift in Sources */,
 				46EB2E00001330 /* LRUAnimationCache.swift in Sources */,

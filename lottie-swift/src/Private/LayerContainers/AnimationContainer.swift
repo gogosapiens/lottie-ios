@@ -37,6 +37,10 @@ final class AnimationContainer: CALayer {
         layerTextProvider.reloadTexts()
     }
     
+    func reloadFonts() {
+        layerFontProvider.reloadTexts()
+    }
+    
     func pausePlayers() {
         layerImageProvider.pausePlayers()
     }
@@ -119,17 +123,24 @@ final class AnimationContainer: CALayer {
         set { layerTextProvider.textProvider = newValue }
     }
     
+    var fontProvider: AnimationFontProvider {
+        get { return layerFontProvider.fontProvider }
+        set { layerFontProvider.fontProvider = newValue }
+    }
+    
     var animationLayers: ContiguousArray<CompositionLayer>
     fileprivate let layerImageProvider: LayerImageProvider
     fileprivate let layerTextProvider: LayerTextProvider
+    fileprivate let layerFontProvider: LayerFontProvider
     
-    init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider) {
+    init(animation: Animation, imageProvider: AnimationImageProvider, textProvider: AnimationTextProvider, fontProvider: AnimationFontProvider) {
         self.layerImageProvider = LayerImageProvider(imageProvider: imageProvider, assets: animation.assetLibrary?.imageAssets)
         self.layerTextProvider = LayerTextProvider(textProvider: textProvider)
+        self.layerFontProvider = LayerFontProvider(fontProvider: fontProvider)
         self.animationLayers = []
         super.init()
         bounds = animation.bounds
-        let layers = animation.layers.initializeCompositionLayers(assetLibrary: animation.assetLibrary, layerImageProvider: layerImageProvider, textProvider: textProvider, frameRate: CGFloat(animation.framerate))
+        let layers = animation.layers.initializeCompositionLayers(assetLibrary: animation.assetLibrary, layerImageProvider: layerImageProvider, textProvider: textProvider, fontProvider: fontProvider, frameRate: CGFloat(animation.framerate))
         
         var imageLayers = [ImageCompositionLayer]()
         var textLayers = [TextCompositionLayer]()
@@ -162,6 +173,7 @@ final class AnimationContainer: CALayer {
         layerImageProvider.addImageLayers(imageLayers)
         layerImageProvider.reloadImages()
         layerTextProvider.addTextLayers(textLayers)
+        layerFontProvider.addTextLayers(textLayers)
         layerTextProvider.reloadTexts()
         setNeedsDisplay()
     }
@@ -171,6 +183,7 @@ final class AnimationContainer: CALayer {
         self.animationLayers = []
         self.layerImageProvider = LayerImageProvider(imageProvider: BlankImageProvider(), assets: nil)
         self.layerTextProvider = LayerTextProvider(textProvider: DefaultTextProvider())
+        self.layerFontProvider = LayerFontProvider(fontProvider: DefaultFontProvider())
         super.init(layer: layer)
         
         guard let animationLayer = layer as? AnimationContainer else { return }
