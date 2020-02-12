@@ -16,7 +16,7 @@ final class ShapeCompositionLayer: CompositionLayer {
   let rootNode: AnimatorNode?
   let renderContainer: ShapeContainerLayer?
   
-  init(shapeLayer: ShapeLayerModel, colorProvider: AnimationColorProvider) {
+  init(shapeLayer: ShapeLayerModel) {
     let results = shapeLayer.items.initializeNodeTree()
     let renderContainer = ShapeContainerLayer()
     self.renderContainer = renderContainer

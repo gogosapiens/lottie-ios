@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let animation = Animation.filepath(Bundle.main.url(forResource: "animation6", withExtension: "json")!.path)
+        let animation = Animation.filepath(Bundle.main.url(forResource: "animation9", withExtension: "json")!.path)
 
         animationView.animation = animation
         
@@ -31,15 +31,13 @@ class ViewController: UIViewController {
         animationView.backgroundBehavior = .pauseAndRestore
         animationView.textProvider = self
         animationView.imageProvider = self
-        animationView.colorProvider = self
         animationView.reloadImages()
         animationView.delegate = self
         animationView.textEditingDelegate = self
         
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-            self.colors = [#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)]
-            self.animationView.reloadColors()
-        }
+        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Color"))
+        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill 1.Color"))
+        animationView.setValueProvider(SizeValueProvider(CGSize(width: 100, height: 100)), keypath: AnimationKeypath(keypath: "Shape Layer 1.Ellipse Path 1.Size"))
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -134,11 +132,5 @@ extension ViewController: AnimationViewTextEditingDelegate {
     }
     public func deleteBackwardForKeypathName(_ keypathName: String) {
         
-    }
-}
-
-extension ViewController: AnimationColorProvider {
-    func colorForIndex(_ index: Int) -> CGColor {
-        return colors[index].cgColor
     }
 }

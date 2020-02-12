@@ -59,7 +59,7 @@ final class TextCompositionLayer: CompositionLayer {
     let textStrokeLayer: DisabledTextLayer = DisabledTextLayer()
     var textProvider: AnimationTextProvider
     
-    init(textLayer: TextLayerModel, textProvider: AnimationTextProvider, colorProvider: AnimationColorProvider) {
+    init(textLayer: TextLayerModel, textProvider: AnimationTextProvider) {
         var rootNode: TextAnimatorNode?
         for animator in textLayer.animators {
             rootNode = TextAnimatorNode(parentNode: rootNode, textAnimator: animator)
@@ -119,8 +119,8 @@ final class TextCompositionLayer: CompositionLayer {
         interpolatableScale?.value(frame: frame)
         rootNode?.rebuildOutputs(frame: frame)
         
-        let fillColor = rootNode?.textOutputNode.fillColor ?? colorProvider.colorForSourceColor(text.fillColorData)
-        let strokeColor = rootNode?.textOutputNode.strokeColor ?? (text.strokeColorData != nil ? colorProvider.colorForSourceColor(text.strokeColorData!) : nil)
+        let fillColor = rootNode?.textOutputNode.fillColor ?? text.fillColorData.cgColorValue
+        let strokeColor = rootNode?.textOutputNode.strokeColor ?? text.strokeColorData?.cgColorValue
         let strokeWidth = rootNode?.textOutputNode.strokeWidth ?? CGFloat(text.strokeWidth ?? 0)
         let tracking = (CGFloat(text.fontSize) * (rootNode?.textOutputNode.tracking ?? CGFloat(text.tracking))) / 1000.0
         

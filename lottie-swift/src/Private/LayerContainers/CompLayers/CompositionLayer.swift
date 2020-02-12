@@ -20,8 +20,6 @@ class CompositionLayer: CALayer, KeypathSearchable {
     
     let contentsLayer: CALayer = CALayer()
     
-    var colorProvider: AnimationColorProvider
-    
     let maskLayer: MaskContainerLayer?
     
     let matteType: MatteType?
@@ -67,7 +65,6 @@ class CompositionLayer: CALayer, KeypathSearchable {
         self.keypathName = layer.name
         self.childKeypaths = [transformNode.transformProperties]
         self.isEditable = layer.editable
-        self.colorProvider = DefaultColorProvider()
         super.init()
         self.anchorPoint = .zero
         self.actions = [
@@ -111,7 +108,6 @@ class CompositionLayer: CALayer, KeypathSearchable {
         self.childKeypaths = [transformNode.transformProperties]
         self.maskLayer = nil
         self.isEditable = layer.isEditable
-        self.colorProvider = layer.colorProvider
         super.init(layer: layer)
     }
     
