@@ -60,7 +60,7 @@ final class Transform: Codable {
     let container = try decoder.container(keyedBy: Transform.CodingKeys.self)
     
     // AnchorPoint
-    self.anchorPoint = try container.decodeIfPresent(KeyframeGroup<Vector3D>.self, forKey: .anchorPoint) ?? KeyframeGroup(Vector3D(x: Double(0), y: 0, z: 0))
+    self.anchorPoint = (try? container.decodeIfPresent(KeyframeGroup<Vector3D>.self, forKey: .anchorPoint)) ?? KeyframeGroup(Vector3D(x: Double(0), y: 0, z: 0))
     
     // Position
     if container.contains(.positionX), container.contains(.positionY) {

@@ -126,7 +126,7 @@ final class TextCompositionLayer: CompositionLayer {
         
         animatorNodes.forEach({ $0.rebuildOutputs(frame: frame) })
         
-        let fillColor = animatorNodes.compactMap({ $0.textOutputNode.fillColor }).last ?? text.fillColorData.cgColorValue
+        let fillColor = animatorNodes.compactMap({ $0.textOutputNode.fillColor }).last ?? text.fillColorData?.cgColorValue ?? UIColor.clear.cgColor
         let strokeColor = animatorNodes.compactMap({ $0.textOutputNode.strokeColor }).last ?? text.strokeColorData?.cgColorValue
         let strokeWidth = animatorNodes.compactMap({ $0.textOutputNode.strokeWidth }).last ?? CGFloat(text.strokeWidth ?? 0)
         let tracking = (CGFloat(text.fontSize) * (animatorNodes.compactMap({ $0.textOutputNode.tracking }).last ?? CGFloat(text.tracking))) / 1000.0
@@ -136,7 +136,7 @@ final class TextCompositionLayer: CompositionLayer {
         let font = fontProvider.fontFor(keypathName: self.keypathName, sourceFontName: text.fontFamily, size: CGFloat(text.fontSize))
         
         let textString = textProvider.textFor(keypathName: self.keypathName, sourceText: text.text)
-        print(fontProvider)
+        
         var attributes: [NSAttributedString.Key : Any] = [
             NSAttributedString.Key.font: font,
             NSAttributedString.Key.foregroundColor: fillColor,
@@ -144,9 +144,11 @@ final class TextCompositionLayer: CompositionLayer {
         ]
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = CGFloat(text.lineHeight)
         paragraphStyle.alignment = text.justification.textAlignment
-        attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
+//        paragraphStyle.lineSpacing = 0
+//        paragraphStyle.maximumLineHeight = CGFloat(text.lineHeight)
+//        paragraphStyle.minimumLineHeight = CGFloat(text.lineHeight)
+        attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle as NSParagraphStyle
         
         let baseAttributedString = NSAttributedString(string: textString, attributes: attributes )
         
@@ -158,33 +160,37 @@ final class TextCompositionLayer: CompositionLayer {
             textStrokeLayer.isHidden = true
         }
         
-        let size: CGSize
         let attributedString: NSAttributedString = NSAttributedString(string: textString, attributes: attributes )
         
-        if let frameSize = text.textFrameSize {
-            size = CGSize(width: frameSize.x, height: frameSize.y)
-        } else {
-            let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-            
-            size = CTFramesetterSuggestFrameSizeWithConstraints(framesetter,
-                                                                CFRange(location: 0,length: 0),
-                                                                nil,
-                                                                CGSize(width: CGFloat.greatestFiniteMagnitude,
-                                                                       height: CGFloat.greatestFiniteMagnitude),
-                                                                nil)
-        }
+//        let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
+//        let constraintSize = CGSize(width: text.textFrameSize != nil ? CGFloat(text.textFrameSize!.x) : self.frame.width, height: 10000)
+//
+//        let framasetterSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0,length: 0), nil, constraintSize, nil)
+        let width = text.textFrameSize != nil ? CGFloat(text.textFrameSize!.x) : self.frame.width
+        let height = attributedString.height(withConstrainedWidth: width)
+        let size = CGSize(width: width, height: height)
         
+        //print("Size:", size)
+        //print("FrameSize:", text.textFrameSize!)
+        print("ascender", font.ascender)
+        print("descender", font.descender)
         let baselinePosition = font.ascender
         let textAnchor: CGPoint
-        switch text.justification {
-        case .left:
-            textAnchor = CGPoint(x: 0, y: baselinePosition)
-        case .right:
-            textAnchor = CGPoint(x: size.width, y: baselinePosition)
-        case .center:
-            textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
+        if text.textFrameSize != nil {
+            textAnchor = CGPoint(x: 0, y: -font.descender)
+        } else {
+            switch text.justification {
+            case .left:
+                textAnchor = CGPoint(x: 0, y: baselinePosition)
+            case .right:
+                textAnchor = CGPoint(x: size.width, y: baselinePosition)
+            case .center:
+                textAnchor = CGPoint(x: size.width * 0.5, y: baselinePosition)
+            }
         }
+//        textLayer.borderColor = UIColor.blue.cgColor
         let anchor = textAnchor + anchorPoint.pointValue
+        print("🔷",anchorPoint.pointValue)
         let normalizedAnchor = CGPoint(x: anchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
                                        y: anchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
         

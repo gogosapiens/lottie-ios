@@ -13,17 +13,30 @@ import Lottie
 class ViewController: UIViewController {
 
     @IBOutlet weak var animationView: AnimationView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var defaultAssetResources: [String: AssetResource] = [
+        "img_0.png": .image(#imageLiteral(resourceName: "img_0").cgImage!),
+        "img_1.png": .image(#imageLiteral(resourceName: "img_1").cgImage!),
+        "img_2.png": .image(#imageLiteral(resourceName: "img_2").cgImage!),
+        "img_3.png": .image(#imageLiteral(resourceName: "img_3").cgImage!)
+    ]
     var pickedAssetResources = [String: AssetResource]()
     var defaultTexts = [String: String]()
     var customTexts = [String: String]()
     var currentPickingAssetResourceID: String?
-    var colors = [#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)]
+    var colorPalettes: [ColorPalette] = [
+        [#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1).lottieColorValue, #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1).lottieColorValue, #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1).lottieColorValue],
+        [#colorLiteral(red: 0.4979559183, green: 0, blue: 0.7701239586, alpha: 1).lottieColorValue, #colorLiteral(red: 0.2869204879, green: 0, blue: 0.7715654969, alpha: 1).lottieColorValue, #colorLiteral(red: 0, green: 0.3361636996, blue: 0.7679021955, alpha: 1).lottieColorValue],
+        [#colorLiteral(red: 0, green: 0.754439652, blue: 0.546407342, alpha: 1).lottieColorValue, #colorLiteral(red: 0, green: 0.7544339895, blue: 0, alpha: 1).lottieColorValue, #colorLiteral(red: 0.6414628625, green: 0.7437676787, blue: 0, alpha: 1).lottieColorValue]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let animation = Animation.filepath(Bundle.main.url(forResource: "animation12", withExtension: "json")!.path)
+        try! AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
+        
+        let animation = Animation.filepath(Bundle.main.url(forResource: "data", withExtension: "json")!.path)
 
         animationView.animation = animation
         
@@ -36,13 +49,27 @@ class ViewController: UIViewController {
         animationView.delegate = self
         animationView.textEditingDelegate = self
         
-        animationView.setValueProvider(ColorValueProvider(Color(r: 1, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_1.Fill Color"))
-        animationView.setValueProvider(ColorValueProvider(Color(r: 1, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_1.Stroke Color"))
-        animationView.setValueProvider(ColorValueProvider(Color(r: 1, g: 0, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_1.Color"))
+        segmentedControl.selectedSegmentIndex = 0
+        animationView.colorPalette = colorPalettes[0]
         
-        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Fill Color"))
-        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Stroke Color"))
-        animationView.setValueProvider(ColorValueProvider(Color(r: 0, g: 1, b: 1, a: 1)), keypath: AnimationKeypath(keypath: "**.Fill_3.Color"))
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(panValueChanged(_:)))
+        animationView.addGestureRecognizer(recognizer)
+        animationView.logHierarchyKeypaths()
+    }
+    
+    var textOffset: CGPoint = .zero
+    
+    @objc func panValueChanged(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: animationView)
+        let offset = CGPoint(x: textOffset.x - translation.x, y: textOffset.y - translation.y)
+        switch sender.state {
+        case .changed:
+            animationView.setValueProvider(PointValueProvider(offset), keypath: AnimationKeypath(keypath: "You are.Transform.Anchor Point"))
+        case .ended:
+            textOffset = offset
+        default:
+            break
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +77,21 @@ class ViewController: UIViewController {
         if !animationView.isAnimationPlaying {
             animationView.play()
         }
+    }
+    
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        animationView.colorPalette = colorPalettes[sender.selectedSegmentIndex]
+    }
+    
+    @IBAction func selectMultipleButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func exportButtonTapped(_ sender: UIButton) {
+//        let url = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+//        VideoEditor().makeBirthdayCard(animation: animationView.animation!, videoURL: url) { url in
+//            print(url)
+//        }
     }
 }
 
@@ -84,7 +126,8 @@ extension ViewController: AnimationTextProvider {
 extension ViewController: AnimationImageProvider {
     
     func imageForAsset(asset: ImageAsset) -> AssetResource? {
-        return pickedAssetResources[asset.id] ?? .image(#imageLiteral(resourceName: "placeholder").cgImage!)
+        print(#function, asset.id)
+        return pickedAssetResources[asset.id] ?? defaultAssetResources[asset.name] ?? .image(#imageLiteral(resourceName: "placeholder").cgImage!)
     }
 }
 
@@ -136,6 +179,6 @@ extension ViewController: AnimationViewTextEditingDelegate {
 extension ViewController: AnimationFontProvider {
     
     func fontFor(keypathName: String, sourceFontName: String, size: CGFloat) -> UIFont {
-        return UIFont.systemFont(ofSize: size, weight: .black)
+        return UIFont.systemFont(ofSize: size, weight: .bold)
     }
 }

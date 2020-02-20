@@ -34,6 +34,8 @@ public enum LottieLoopMode {
     case repeatBackwards(Float)
 }
 
+public typealias ColorPalette = [Color]
+
 extension LottieLoopMode: Equatable {
     public static func == (lhs: LottieLoopMode, rhs: LottieLoopMode) -> Bool {
         switch (lhs, rhs) {
@@ -133,8 +135,29 @@ final public class AnimationView: LottieView, UIKeyInput {
             //                delegate?.animationView(self, didTapTextWithKeypathName: textCompositionLayer.keypathName)
             textEditingKeypathName = textCompositionLayer.keypathName
             _ = becomeFirstResponder()
+            if let textCompositionLayers = animationLayer?.animationLayers.compactMap({ $0 as? TextCompositionLayer }) {
+                textCompositionLayers.forEach { textCompositionLayer in
+                    print(textCompositionLayer.textLayer.frame)
+                    //let rect = imageCompositionLayer.contentsLayer.convert(imageCompositionLayer.contentsLayer.bounds, to: self.layer)
+//                    let view = UIView(frame: textCompositionLayer.textLayer.frame)
+//                    view.backgroundColor = .blue
+//                    addSubview(view)
+                }
+            }
         }
-        
+    }
+    
+    public var colorPalette: ColorPalette? {
+        didSet {
+            guard let colorPalette = colorPalette else {
+                return
+            }
+            colorPalette.enumerated().forEach { offset, color in
+                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill_\(offset + 1).Fill Color"))
+                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill_\(offset + 1).Stroke Color"))
+                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill_\(offset + 1).Color"))
+            }
+        }
     }
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

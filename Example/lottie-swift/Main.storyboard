@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1ft-ZH-VFl">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -13,32 +13,79 @@
             <objects>
                 <viewController id="1ft-ZH-VFl" customClass="ViewController" customModule="lottie_swift_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UUU-Ub-Fd4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goh-Oh-aHo" customClass="AnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <gestureRecognizers/>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Yvb-4l-blJ">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goh-Oh-aHo" customClass="AnimationView" customModule="Lottie">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <gestureRecognizers/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHP-e8-IbM">
+                                        <rect key="frame" x="0.0" y="606" width="375" height="128"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Wvq-kh-iNz">
+                                                <rect key="frame" x="8" y="8" width="359" height="32"/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                    <segment title="Third"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="segmentedControlValueChanged:" destination="1ft-ZH-VFl" eventType="valueChanged" id="JAa-ZH-um8"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WC-re-FmE">
+                                                <rect key="frame" x="136.66666666666666" y="47" width="102" height="30"/>
+                                                <state key="normal" title="Select Multiple"/>
+                                                <connections>
+                                                    <action selector="selectMultipleButtonTapped:" destination="1ft-ZH-VFl" eventType="touchUpInside" id="WHx-xs-K9C"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLs-FV-RDc">
+                                                <rect key="frame" x="165" y="85" width="45" height="30"/>
+                                                <state key="normal" title="Export"/>
+                                                <connections>
+                                                    <action selector="exportButtonTapped:" destination="1ft-ZH-VFl" eventType="touchUpInside" id="3pb-RX-sY7"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="2WC-re-FmE" firstAttribute="top" secondItem="Wvq-kh-iNz" secondAttribute="bottom" constant="8" id="480-li-qKd"/>
+                                            <constraint firstItem="Wvq-kh-iNz" firstAttribute="leading" secondItem="pHP-e8-IbM" secondAttribute="leading" constant="8" id="5nH-V3-Njx"/>
+                                            <constraint firstItem="fLs-FV-RDc" firstAttribute="top" secondItem="2WC-re-FmE" secondAttribute="bottom" constant="8" id="9uJ-oF-kqz"/>
+                                            <constraint firstItem="Wvq-kh-iNz" firstAttribute="top" secondItem="pHP-e8-IbM" secondAttribute="top" constant="8" id="Vaa-ZW-Iup"/>
+                                            <constraint firstAttribute="height" constant="128" id="ZrN-37-pHf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wvq-kh-iNz" secondAttribute="trailing" constant="8" id="bm7-Ai-37a"/>
+                                            <constraint firstItem="fLs-FV-RDc" firstAttribute="centerX" secondItem="pHP-e8-IbM" secondAttribute="centerX" id="mVa-DK-CPL"/>
+                                            <constraint firstItem="2WC-re-FmE" firstAttribute="centerX" secondItem="pHP-e8-IbM" secondAttribute="centerX" id="pa7-vk-bxb"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="goh-Oh-aHo" firstAttribute="top" secondItem="LQA-fR-EFT" secondAttribute="top" id="eIY-Ye-nSe"/>
-                            <constraint firstItem="LQA-fR-EFT" firstAttribute="bottom" secondItem="goh-Oh-aHo" secondAttribute="bottom" id="eYb-dK-sCU"/>
-                            <constraint firstItem="LQA-fR-EFT" firstAttribute="trailing" secondItem="goh-Oh-aHo" secondAttribute="trailing" id="go8-G2-10h"/>
-                            <constraint firstItem="goh-Oh-aHo" firstAttribute="leading" secondItem="LQA-fR-EFT" secondAttribute="leading" id="il1-gi-Crl"/>
+                            <constraint firstItem="LQA-fR-EFT" firstAttribute="bottom" secondItem="Yvb-4l-blJ" secondAttribute="bottom" id="DJY-w0-xm3"/>
+                            <constraint firstItem="Yvb-4l-blJ" firstAttribute="leading" secondItem="LQA-fR-EFT" secondAttribute="leading" id="P3L-qb-XlR"/>
+                            <constraint firstItem="Yvb-4l-blJ" firstAttribute="trailing" secondItem="LQA-fR-EFT" secondAttribute="trailing" id="dOJ-g6-XZ7"/>
+                            <constraint firstItem="Yvb-4l-blJ" firstAttribute="top" secondItem="LQA-fR-EFT" secondAttribute="top" id="gUV-JG-TcZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LQA-fR-EFT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" id="2XX-CX-Msv"/>
                     <connections>
                         <outlet property="animationView" destination="goh-Oh-aHo" id="XBh-wy-VNE"/>
+                        <outlet property="segmentedControl" destination="Wvq-kh-iNz" id="z0b-cx-agt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oR-jQ-bwr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231" y="113"/>
+            <point key="canvasLocation" x="229.59999999999999" y="112.3152709359606"/>
         </scene>
     </scenes>
 </document>
