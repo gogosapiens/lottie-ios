@@ -36,6 +36,6 @@ public enum AssetResource {
     }
 }
 
-public protocol AnimationImageProvider {
+public protocol AnimationImageProvider: class {
   func imageForAsset(asset: ImageAsset) -> AssetResource?
 }

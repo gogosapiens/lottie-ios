@@ -10,11 +10,12 @@ import UIKit
 import AVFoundation
 import Lottie
 
-class ViewController: UIViewController {
+class EditViewController: UIViewController {
 
     @IBOutlet weak var animationView: AnimationView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var animation: Animation!
     var defaultAssetResources: [String: AssetResource] = [
         "img_0.png": .image(#imageLiteral(resourceName: "img_0").cgImage!),
         "img_1.png": .image(#imageLiteral(resourceName: "img_1").cgImage!),
@@ -35,8 +36,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         try! AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
-        
-        let animation = Animation.filepath(Bundle.main.url(forResource: "data", withExtension: "json")!.path)
 
         animationView.animation = animation
         
@@ -95,7 +94,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: AnimationViewDelegate {
+extension EditViewController: AnimationViewDelegate {
     
     func animationView(_ animationView: AnimationView, didTapAssetWithReferenceID imageReferenceID: String) {
         animationView.pause()
@@ -115,7 +114,7 @@ extension ViewController: AnimationViewDelegate {
     }
 }
 
-extension ViewController: AnimationTextProvider {
+extension EditViewController: AnimationTextProvider {
     
     func textFor(keypathName: String, sourceText: String) -> String {
         defaultTexts[keypathName] = sourceText
@@ -123,7 +122,7 @@ extension ViewController: AnimationTextProvider {
     }
 }
 
-extension ViewController: AnimationImageProvider {
+extension EditViewController: AnimationImageProvider {
     
     func imageForAsset(asset: ImageAsset) -> AssetResource? {
         print(#function, asset.id)
@@ -131,7 +130,7 @@ extension ViewController: AnimationImageProvider {
     }
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let assetResourceID = currentPickingAssetResourceID else {
@@ -151,7 +150,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-extension ViewController: AnimationViewTextEditingDelegate {
+extension EditViewController: AnimationViewTextEditingDelegate {
     
     func animationView(_ animationView: AnimationView, didDeleteBackwardForKeypathName keypathName: String) {
         if customTexts[keypathName] == nil {
@@ -176,7 +175,7 @@ extension ViewController: AnimationViewTextEditingDelegate {
     }
 }
 
-extension ViewController: AnimationFontProvider {
+extension EditViewController: AnimationFontProvider {
     
     func fontFor(keypathName: String, sourceFontName: String, size: CGFloat) -> UIFont {
         return UIFont.systemFont(ofSize: size, weight: .bold)

@@ -412,8 +412,10 @@
 		46EB2E00002CF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EB2E00001EA0 /* Foundation.framework */; };
 		46EB2E00002D60 /* Pods-lottie-swift_tvOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46EB2E00002D50 /* Pods-lottie-swift_tvOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46EB2E00002DB0 /* Pods-lottie-swift_tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EB2E00002DA0 /* Pods-lottie-swift_tvOS-dummy.m */; };
-		95C8AACD23F43A490094B514 /* AnimationFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8AACC23F43A490094B514 /* AnimationFontProvider.swift */; };
-		95C8AACF23F43B1E0094B514 /* LayerFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8AACE23F43B1E0094B514 /* LayerFontProvider.swift */; };
+		95C8AACD23F43A490094B514 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		95C8AACF23F43B1E0094B514 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		95E0E848241106A20099E931 /* AnimationFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0E847241106A20099E931 /* AnimationFontProvider.swift */; };
+		95E0E84A241106C60099E931 /* LayerFontProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0E849241106C60099E931 /* LayerFontProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -652,8 +654,8 @@
 		5CBAEAF1D52528C70D31576C2FD2253E /* Pods_lottie_swift_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE012080E255559C105B0699451AE31 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B5A455553977229E8D85D13C54AA54 /* Pods_lottie_swift_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		95C8AACC23F43A490094B514 /* AnimationFontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFontProvider.swift; sourceTree = "<group>"; };
-		95C8AACE23F43B1E0094B514 /* LayerFontProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerFontProvider.swift; sourceTree = "<group>"; };
+		95E0E847241106A20099E931 /* AnimationFontProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationFontProvider.swift; sourceTree = "<group>"; };
+		95E0E849241106C60099E931 /* LayerFontProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerFontProvider.swift; sourceTree = "<group>"; };
 		9EAA9105ACA723812B2965646AFFACA4 /* Pods_lottie_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA8AF97457829146B4F4122C2762D2 /* Pods_lottie_swift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lottie_swift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -837,7 +839,7 @@
 				46EB2E000001B0 /* InvertedMatteLayer.swift */,
 				46EB2E000001C0 /* LayerImageProvider.swift */,
 				46EB2E000001D0 /* LayerTextProvider.swift */,
-				95C8AACE23F43B1E0094B514 /* LayerFontProvider.swift */,
+				95E0E849241106C60099E931 /* LayerFontProvider.swift */,
 				46EB2E000001E0 /* LayerTransformNode.swift */,
 			);
 			path = Utility;
@@ -1416,7 +1418,7 @@
 		95C8AACB23F43A250094B514 /* FontProvider */ = {
 			isa = PBXGroup;
 			children = (
-				95C8AACC23F43A490094B514 /* AnimationFontProvider.swift */,
+				95E0E847241106A20099E931 /* AnimationFontProvider.swift */,
 			);
 			path = FontProvider;
 			sourceTree = "<group>";
@@ -1620,7 +1622,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 46EB2E00000030 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1745,13 +1747,14 @@
 				46EB2E00000EC0 /* FillI.swift in Sources */,
 				46EB2E00001150 /* FillNode.swift in Sources */,
 				46EB2E000010B0 /* FillRenderer.swift in Sources */,
-				95C8AACD23F43A490094B514 /* AnimationFontProvider.swift in Sources */,
+				95C8AACD23F43A490094B514 /* (null) in Sources */,
 				46EB2E00001370 /* FloatValueProvider.swift in Sources */,
 				46EB2E00000F90 /* Font.swift in Sources */,
 				46EB2E00000FA0 /* Glyph.swift in Sources */,
 				46EB2E00000ED0 /* GradientFill.swift in Sources */,
 				46EB2E00001160 /* GradientFillNode.swift in Sources */,
 				46EB2E000010C0 /* GradientFillRenderer.swift in Sources */,
+				95E0E84A241106C60099E931 /* LayerFontProvider.swift in Sources */,
 				46EB2E00000EE0 /* GradientStroke.swift in Sources */,
 				46EB2E00001170 /* GradientStrokeNode.swift in Sources */,
 				46EB2E000010D0 /* GradientStrokeRenderer.swift in Sources */,
@@ -1778,7 +1781,7 @@
 				46EB2E00000E20 /* LayerModel.swift in Sources */,
 				46EB2E00000D70 /* LayerTextProvider.swift in Sources */,
 				46EB2E00000D80 /* LayerTransformNode.swift in Sources */,
-				95C8AACF23F43B1E0094B514 /* LayerFontProvider.swift in Sources */,
+				95C8AACF23F43B1E0094B514 /* (null) in Sources */,
 				46EB2E00001520 /* lottie-ios-iOS-dummy.m in Sources */,
 				46EB2E00001440 /* LottieView.swift in Sources */,
 				46EB2E00001330 /* LRUAnimationCache.swift in Sources */,
@@ -1829,6 +1832,7 @@
 				46EB2E00000EA0 /* Transform.swift in Sources */,
 				46EB2E00000F80 /* Trim.swift in Sources */,
 				46EB2E00001070 /* TrimPathNode.swift in Sources */,
+				95E0E848241106A20099E931 /* AnimationFontProvider.swift in Sources */,
 				46EB2E00001450 /* UIColorExtension.swift in Sources */,
 				46EB2E00001030 /* ValueContainer.swift in Sources */,
 				46EB2E00001480 /* Vectors.swift in Sources */,
@@ -2356,6 +2360,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46EB2E00001D80 /* lottie-ios-macOS.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2389,6 +2394,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 46EB2E00001D80 /* lottie-ios-macOS.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2620,6 +2626,7 @@
 			baseConfigurationReference = 46EB2E00002BB0 /* Pods-lottie-swift_macOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2655,6 +2662,7 @@
 			baseConfigurationReference = 46EB2E00002BC0 /* Pods-lottie-swift_macOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

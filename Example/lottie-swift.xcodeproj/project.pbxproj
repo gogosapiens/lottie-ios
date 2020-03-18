@@ -31,11 +31,19 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		9560855923FEC5760020E5CD /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9560855823FEC5760020E5CD /* data.json */; };
+		950672B52417BB5D00F02C72 /* UICollectionView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950672B22417BB5D00F02C72 /* UICollectionView+Reusable.swift */; };
+		950672B62417BB5D00F02C72 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950672B32417BB5D00F02C72 /* Reusable.swift */; };
+		950672B72417BB5D00F02C72 /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950672B42417BB5D00F02C72 /* UITableView+Reusable.swift */; };
+		950672C42422182200F02C72 /* sport_main.json in Resources */ = {isa = PBXBuildFile; fileRef = 950672C22422182100F02C72 /* sport_main.json */; };
+		950672C52422182200F02C72 /* sport_preview.json in Resources */ = {isa = PBXBuildFile; fileRef = 950672C32422182200F02C72 /* sport_preview.json */; };
+		950672C92422409300F02C72 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950672C82422409300F02C72 /* UIViewController.swift */; };
 		95C8AAE523F6BC590094B514 /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8AAE423F6BC590094B514 /* VideoEditor.swift */; };
 		95C8AAE723F6CEA20094B514 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 95C8AAE623F6CDB20094B514 /* video.mp4 */; };
+		95E0E86C2417B8A50099E931 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0E86B2417B8A50099E931 /* FeedViewController.swift */; };
+		95E0E86E2417B8D20099E931 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0E86D2417B8D20099E931 /* CategoryTableViewCell.swift */; };
+		95E0E8702417B8EF0099E931 /* AnimationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0E86F2417B8EF0099E931 /* AnimationCollectionViewCell.swift */; };
 		95E26F3223E8752D00A10C19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E26F2F23E8752C00A10C19 /* Main.storyboard */; };
-		95E26F3423E8752D00A10C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E26F3123E8752D00A10C19 /* ViewController.swift */; };
+		95E26F3423E8752D00A10C19 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E26F3123E8752D00A10C19 /* EditViewController.swift */; };
 		BD219F24999976E886C12456 /* Pods_lottie_swift_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486E8356220A2275007CD915 /* Pods_lottie_swift_macOS.framework */; };
 		F70695AD1682BD3DE4571C16 /* Pods_lottie_swift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBE029188DBACE4177BA6CED /* Pods_lottie_swift_Example.framework */; };
 		F9607D5C3894D27EBC8E897A /* Pods_lottie_swift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A87FE847836C80F1A12E29 /* Pods_lottie_swift_Tests.framework */; };
@@ -91,11 +99,19 @@
 		669CBA494BD2722D6FA87704 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		90A6D05A7336A0F45A1084BE /* Pods-lottie-swift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_Example/Pods-lottie-swift_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		91240075B0C8FCDB8EE7FA52 /* lottie-ios.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "lottie-ios.podspec"; path = "../lottie-ios.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9560855823FEC5760020E5CD /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		950672B22417BB5D00F02C72 /* UICollectionView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Reusable.swift"; sourceTree = "<group>"; };
+		950672B32417BB5D00F02C72 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		950672B42417BB5D00F02C72 /* UITableView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reusable.swift"; sourceTree = "<group>"; };
+		950672C22422182100F02C72 /* sport_main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sport_main.json; sourceTree = "<group>"; };
+		950672C32422182200F02C72 /* sport_preview.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sport_preview.json; sourceTree = "<group>"; };
+		950672C82422409300F02C72 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		95C8AAE423F6BC590094B514 /* VideoEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
 		95C8AAE623F6CDB20094B514 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		95E0E86B2417B8A50099E931 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		95E0E86D2417B8D20099E931 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		95E0E86F2417B8EF0099E931 /* AnimationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCollectionViewCell.swift; sourceTree = "<group>"; };
 		95E26F2F23E8752C00A10C19 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		95E26F3123E8752D00A10C19 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		95E26F3123E8752D00A10C19 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		990C0AA8A35456B23B51C127 /* Pods-lottie-swift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_Example/Pods-lottie-swift_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9BE45D36D5254BD996E95AB1 /* Pods-lottie-swift_macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_macOS/Pods-lottie-swift_macOS.release.xcconfig"; sourceTree = "<group>"; };
 		9C512735B8BB596E2E2D58CE /* Pods-lottie-swift_tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lottie-swift_tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-lottie-swift_tvOS/Pods-lottie-swift_tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,8 +243,13 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				95E26F2F23E8752C00A10C19 /* Main.storyboard */,
-				95E26F3123E8752D00A10C19 /* ViewController.swift */,
+				95E0E86B2417B8A50099E931 /* FeedViewController.swift */,
+				95E26F3123E8752D00A10C19 /* EditViewController.swift */,
+				95E0E86D2417B8D20099E931 /* CategoryTableViewCell.swift */,
+				95E0E86F2417B8EF0099E931 /* AnimationCollectionViewCell.swift */,
+				950672C82422409300F02C72 /* UIViewController.swift */,
 				95C8AAE423F6BC590094B514 /* VideoEditor.swift */,
+				950672B12417BB5D00F02C72 /* Reusable */,
 				95C8AAE623F6CDB20094B514 /* video.mp4 */,
 				95E26F3923E875C500A10C19 /* Animation */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -285,10 +306,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		950672B12417BB5D00F02C72 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				950672B22417BB5D00F02C72 /* UICollectionView+Reusable.swift */,
+				950672B32417BB5D00F02C72 /* Reusable.swift */,
+				950672B42417BB5D00F02C72 /* UITableView+Reusable.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		95E26F3923E875C500A10C19 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				9560855823FEC5760020E5CD /* data.json */,
+				950672C22422182100F02C72 /* sport_main.json */,
+				950672C32422182200F02C72 /* sport_preview.json */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -450,8 +482,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				9560855923FEC5760020E5CD /* data.json in Resources */,
+				950672C42422182200F02C72 /* sport_main.json in Resources */,
 				95E26F3223E8752D00A10C19 /* Main.storyboard in Resources */,
+				950672C52422182200F02C72 /* sport_preview.json in Resources */,
 				48F48E7D21E406B100D9E9A6 /* BasicLayers.json in Resources */,
 				95C8AAE723F6CEA20094B514 /* video.mp4 in Resources */,
 				48F48E7F21E406B100D9E9A6 /* AnimatedTransforms.json in Resources */,
@@ -629,9 +662,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95E26F3423E8752D00A10C19 /* ViewController.swift in Sources */,
+				95E0E86E2417B8D20099E931 /* CategoryTableViewCell.swift in Sources */,
+				95E26F3423E8752D00A10C19 /* EditViewController.swift in Sources */,
 				95C8AAE523F6BC590094B514 /* VideoEditor.swift in Sources */,
+				95E0E86C2417B8A50099E931 /* FeedViewController.swift in Sources */,
+				950672C92422409300F02C72 /* UIViewController.swift in Sources */,
+				950672B72417BB5D00F02C72 /* UITableView+Reusable.swift in Sources */,
+				950672B62417BB5D00F02C72 /* Reusable.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				950672B52417BB5D00F02C72 /* UICollectionView+Reusable.swift in Sources */,
+				95E0E8702417B8EF0099E931 /* AnimationCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

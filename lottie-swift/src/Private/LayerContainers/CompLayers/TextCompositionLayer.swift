@@ -49,6 +49,7 @@ extension TextJustification {
 }
 
 final class TextCompositionLayer: CompositionLayer {
+//<<<<< HEAD
     
     let animatorNodes: [TextAnimatorNode]
     let textDocument: KeyframeInterpolator<TextDocument>?
@@ -89,6 +90,95 @@ final class TextCompositionLayer: CompositionLayer {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+//====
+//
+//  let rootNode: TextAnimatorNode?
+//  let textDocument: KeyframeInterpolator<TextDocument>?
+//
+//  let textLayer: DisabledTextLayer = DisabledTextLayer()
+//  let textStrokeLayer: DisabledTextLayer = DisabledTextLayer()
+//  var textProvider: AnimationTextProvider
+//
+//  init(textLayer: TextLayerModel, textProvider: AnimationTextProvider) {
+//    var rootNode: TextAnimatorNode?
+//    for animator in textLayer.animators {
+//      rootNode = TextAnimatorNode(parentNode: rootNode, textAnimator: animator)
+//    }
+//    self.rootNode = rootNode
+//    self.textDocument = KeyframeInterpolator(keyframes: textLayer.text.keyframes)
+//
+//    self.textProvider = textProvider
+//
+//    super.init(layer: textLayer, size: .zero)
+//    contentsLayer.addSublayer(self.textLayer)
+//    contentsLayer.addSublayer(self.textStrokeLayer)
+//    self.textLayer.masksToBounds = false
+//    self.textStrokeLayer.masksToBounds = false
+//    self.textLayer.isWrapped = true
+//    self.textStrokeLayer.isWrapped = true
+//  }
+//
+//  required init?(coder aDecoder: NSCoder) {
+//    fatalError("init(coder:) has not been implemented")
+//  }
+//
+//  override init(layer: Any) {
+//    /// Used for creating shadow model layers. Read More here: https://developer.apple.com/documentation/quartzcore/calayer/1410842-init
+//    guard let layer = layer as? TextCompositionLayer else {
+//      fatalError("init(layer:) Wrong Layer Class")
+//    }
+//    self.rootNode = nil
+//    self.textDocument = nil
+//
+//    self.textProvider = DefaultTextProvider()
+//
+//    super.init(layer: layer)
+//  }
+//
+//  override func displayContentsWithFrame(frame: CGFloat, forceUpdates: Bool) {
+//    guard let textDocument = textDocument else { return }
+//
+//    textLayer.contentsScale = self.renderScale
+//    textStrokeLayer.contentsScale = self.renderScale
+//
+//    let documentUpdate = textDocument.hasUpdate(frame: frame)
+//    let animatorUpdate = rootNode?.updateContents(frame, forceLocalUpdate: forceUpdates) ?? false
+//    guard documentUpdate == true || animatorUpdate == true else { return }
+//
+//    let text = textDocument.value(frame: frame) as! TextDocument
+//
+//    rootNode?.rebuildOutputs(frame: frame)
+//
+//    let fillColor = rootNode?.textOutputNode.fillColor ?? text.fillColorData.cgColorValue
+//    let strokeColor = rootNode?.textOutputNode.strokeColor ?? text.strokeColorData?.cgColorValue
+//    let strokeWidth = rootNode?.textOutputNode.strokeWidth ?? CGFloat(text.strokeWidth ?? 0)
+//    let tracking = (CGFloat(text.fontSize) * (rootNode?.textOutputNode.tracking ?? CGFloat(text.tracking))) / 1000.0
+//
+//    let matrix = rootNode?.textOutputNode.xform ?? CATransform3DIdentity
+//    let ctFont = CTFontCreateWithName(text.fontFamily as CFString, CGFloat(text.fontSize), nil)
+//
+//    let textString = textProvider.textFor(keypathName: self.keypathName, sourceText: text.text)
+//
+//    var attributes: [NSAttributedString.Key : Any] = [
+//      NSAttributedString.Key.font: ctFont,
+//      NSAttributedString.Key.foregroundColor: fillColor,
+//      NSAttributedString.Key.kern: tracking,
+//    ]
+//
+//    let paragraphStyle = NSMutableParagraphStyle()
+//    paragraphStyle.lineSpacing = CGFloat(text.lineHeight)
+//    paragraphStyle.alignment = text.justification.textAlignment
+//    attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
+//
+//    let baseAttributedString = NSAttributedString(string: textString, attributes: attributes )
+//
+//    if let strokeColor = strokeColor {
+//      textStrokeLayer.isHidden = false
+//      attributes[NSAttributedString.Key.strokeColor] = strokeColor
+//      attributes[NSAttributedString.Key.strokeWidth] = strokeWidth
+//    } else {
+//      textStrokeLayer.isHidden = true
+//>>>>>>> 934978fbd49f3798931cd314740ff3176972
     }
     
     override init(layer: Any) {
@@ -172,8 +262,6 @@ final class TextCompositionLayer: CompositionLayer {
         
         //print("Size:", size)
         //print("FrameSize:", text.textFrameSize!)
-        print("ascender", font.ascender)
-        print("descender", font.descender)
         let baselinePosition = font.ascender
         let textAnchor: CGPoint
         if text.textFrameSize != nil {
@@ -190,7 +278,6 @@ final class TextCompositionLayer: CompositionLayer {
         }
 //        textLayer.borderColor = UIColor.blue.cgColor
         let anchor = textAnchor + anchorPoint.pointValue
-        print("🔷",anchorPoint.pointValue)
         let normalizedAnchor = CGPoint(x: anchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
                                        y: anchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
         
@@ -221,6 +308,11 @@ final class TextCompositionLayer: CompositionLayer {
         textLayer.string = baseAttributedString
         textLayer.alignmentMode = text.justification.caTextAlignement
     }
+//<<<<< HEAD
+//=====
+//    let normalizedAnchor = CGPoint(x: textAnchor.x.remap(fromLow: 0, fromHigh: size.width, toLow: 0, toHigh: 1),
+//                                   y: textAnchor.y.remap(fromLow: 0, fromHigh: size.height, toLow: 0, toHigh: 1))
+//>>>>> 934954c378fbd49f3798931cd314740ff3176972
     
     override func updateRenderScale() {
         super.updateRenderScale()

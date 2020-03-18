@@ -113,6 +113,7 @@ final public class AnimationView: LottieView, UIKeyInput {
         super.touchesMoved(touches, with: event)
     }
 
+//<<<<<<< HEAD
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
     }
@@ -132,13 +133,13 @@ final public class AnimationView: LottieView, UIKeyInput {
         if let imageCompositionLayer = editableLayers.last as? ImageCompositionLayer {
             delegate?.animationView(self, didTapAssetWithReferenceID: imageCompositionLayer.imageReferenceID)
         } else if let textCompositionLayer = editableLayers.last as? TextCompositionLayer {
-            //                delegate?.animationView(self, didTapTextWithKeypathName: textCompositionLayer.keypathName)
+                            delegate?.animationView(self, didTapTextWithKeypathName: textCompositionLayer.keypathName)
             textEditingKeypathName = textCompositionLayer.keypathName
             _ = becomeFirstResponder()
             if let textCompositionLayers = animationLayer?.animationLayers.compactMap({ $0 as? TextCompositionLayer }) {
                 textCompositionLayers.forEach { textCompositionLayer in
-                    print(textCompositionLayer.textLayer.frame)
-                    //let rect = imageCompositionLayer.contentsLayer.convert(imageCompositionLayer.contentsLayer.bounds, to: self.layer)
+//                    print(textCompositionLayer.textLayer.frame)
+//                    let rect = imageCompositionLayer.contentsLayer.convert(imageCompositionLayer.contentsLayer.bounds, to: self.layer)
 //                    let view = UIView(frame: textCompositionLayer.textLayer.frame)
 //                    view.backgroundColor = .blue
 //                    addSubview(view)
@@ -153,9 +154,9 @@ final public class AnimationView: LottieView, UIKeyInput {
                 return
             }
             colorPalette.enumerated().forEach { offset, color in
-                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill_\(offset + 1).Fill Color"))
-                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill_\(offset + 1).Stroke Color"))
-                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill_\(offset + 1).Color"))
+                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill \(offset + 1).Fill Color"))
+                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill \(offset + 1).Stroke Color"))
+                setValueProvider(ColorValueProvider(color), keypath: AnimationKeypath(keypath: "**.Fill \(offset + 1).Color"))
             }
         }
     }
@@ -178,6 +179,7 @@ final public class AnimationView: LottieView, UIKeyInput {
                         sublayers += [imageCompositionLayer]
                     }
                 } else if let textCompositionLayer = sublayer as? TextCompositionLayer {
+                    #warning("Poooopp")
                     let rect = textCompositionLayer.textLayer.convert(textCompositionLayer.textLayer.bounds, to: self.layer)
                     if rect.contains(touchLocation) {
                         sublayers += [textCompositionLayer]
@@ -417,6 +419,316 @@ final public class AnimationView: LottieView, UIKeyInput {
         let context = AnimationContext(playFrom: CGFloat(animation.startFrame),
                                        playTo: CGFloat(animation.endFrame),
                                        closure: completion)
+//   - Parameter isEnabled: When true the animator nodes affect the rendering tree. When false the node is removed from the tree.
+//   - Parameter keypath: The keypath used to find the node(s).
+//   */
+//  public func setNodeIsEnabled(isEnabled: Bool, keypath: AnimationKeypath) {
+//    guard let animationLayer = animationLayer else { return }
+//    let nodes = animationLayer.animatorNodes(for: keypath)
+//    if let nodes = nodes {
+//      for node in nodes {
+//        node.isEnabled = isEnabled
+//      }
+//      self.forceDisplayUpdate()
+//    }
+//  }
+//
+//  // MARK: - Public (Markers)
+//
+//  /**
+//   Markers are a way to describe a point in time by a key name.
+//
+//   Markers are encoded into animation JSON. By using markers a designer can mark
+//   playback points for a developer to use without having to worry about keeping
+//   track of animation frames. If the animation file is updated, the developer
+//   does not need to update playback code.
+//
+//   Returns the Progress Time for the marker named. Returns nil if no marker found.
+//   */
+//  public func progressTime(forMarker named: String) -> AnimationProgressTime? {
+//    guard let animation = animation else {
+//      return nil
+//    }
+//    return animation.progressTime(forMarker: named)
+//  }
+//
+//  /**
+//   Markers are a way to describe a point in time by a key name.
+//
+//   Markers are encoded into animation JSON. By using markers a designer can mark
+//   playback points for a developer to use without having to worry about keeping
+//   track of animation frames. If the animation file is updated, the developer
+//   does not need to update playback code.
+//
+//   Returns the Frame Time for the marker named. Returns nil if no marker found.
+//   */
+//  public func frameTime(forMarker named: String) -> AnimationFrameTime? {
+//    guard let animation = animation else {
+//      return nil
+//    }
+//    return animation.frameTime(forMarker: named)
+//  }
+//
+//  // MARK: - Public (Initializers)
+//
+//  /// Initializes a LottieView with an animation.
+//  public init(animation: Animation?, imageProvider: AnimationImageProvider? = nil, textProvider: AnimationTextProvider = DefaultTextProvider()) {
+//    self.animation = animation
+//    self.imageProvider = imageProvider ?? BundleImageProvider(bundle: Bundle.main, searchPath: nil)
+//    self.textProvider = textProvider
+//    super.init(frame: .zero)
+//    commonInit()
+//    makeAnimationLayer()
+//    if let animation = animation {
+//      frame = animation.bounds
+//    }
+//  }
+//
+//  public init() {
+//    self.animation = nil
+//    self.imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
+//    self.textProvider = DefaultTextProvider()
+//    super.init(frame: .zero)
+//    commonInit()
+//  }
+//
+//  public override init(frame: CGRect) {
+//    self.animation = nil
+//    self.imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
+//    self.textProvider = DefaultTextProvider()
+//    super.init(frame: .zero)
+//    commonInit()
+//  }
+//
+//  required public init?(coder aDecoder: NSCoder) {
+//    self.imageProvider = BundleImageProvider(bundle: Bundle.main, searchPath: nil)
+//    self.textProvider = DefaultTextProvider()
+//    super.init(coder: aDecoder)
+//    commonInit()
+//  }
+//
+//  // MARK: - Public (UIView Overrides)
+//
+//  override public var intrinsicContentSize: CGSize {
+//    if let animation = animation {
+//      return animation.bounds.size
+//    }
+//    return .zero
+//  }
+//
+//  override func layoutAnimation() {
+//    guard let animation = animation, let animationLayer = animationLayer else { return }
+//    var position = animation.bounds.center
+//    let xform: CATransform3D
+//    var shouldForceUpdates: Bool = false
+//
+//    if let viewportFrame = self.viewportFrame {
+//      shouldForceUpdates = self.contentMode == .redraw
+//
+//      let compAspect = viewportFrame.size.width / viewportFrame.size.height
+//      let viewAspect = bounds.size.width / bounds.size.height
+//      let dominantDimension = compAspect > viewAspect ? bounds.size.width : bounds.size.height
+//      let compDimension = compAspect > viewAspect ? viewportFrame.size.width : viewportFrame.size.height
+//      let scale = dominantDimension / compDimension
+//
+//      let viewportOffset = animation.bounds.center - viewportFrame.center
+//      xform = CATransform3DTranslate(CATransform3DMakeScale(scale, scale, 1), viewportOffset.x, viewportOffset.y, 0)
+//      position = bounds.center
+//    } else {
+//      switch contentMode {
+//      case .scaleToFill:
+//        position = bounds.center
+//        xform = CATransform3DMakeScale(bounds.size.width / animation.size.width,
+//                                       bounds.size.height / animation.size.height,
+//                                       1);
+//      case .scaleAspectFit:
+//        position = bounds.center
+//        let compAspect = animation.size.width / animation.size.height
+//        let viewAspect = bounds.size.width / bounds.size.height
+//        let dominantDimension = compAspect > viewAspect ? bounds.size.width : bounds.size.height
+//        let compDimension = compAspect > viewAspect ? animation.size.width : animation.size.height
+//        let scale = dominantDimension / compDimension
+//        xform = CATransform3DMakeScale(scale, scale, 1)
+//      case .scaleAspectFill:
+//        position = bounds.center
+//        let compAspect = animation.size.width / animation.size.height
+//        let viewAspect = bounds.size.width / bounds.size.height
+//        let scaleWidth = compAspect < viewAspect
+//        let dominantDimension = scaleWidth ? bounds.size.width : bounds.size.height
+//        let compDimension = scaleWidth ? animation.size.width : animation.size.height
+//        let scale = dominantDimension / compDimension
+//        xform = CATransform3DMakeScale(scale, scale, 1)
+//      case .redraw:
+//        shouldForceUpdates = true
+//        xform = CATransform3DIdentity
+//      case .center:
+//        position = bounds.center
+//        xform = CATransform3DIdentity
+//      case .top:
+//        position.x = bounds.center.x
+//        xform = CATransform3DIdentity
+//      case .bottom:
+//        position.x = bounds.center.x
+//        position.y = bounds.maxY - animation.bounds.midY
+//        xform = CATransform3DIdentity
+//      case .left:
+//        position.y = bounds.center.y
+//        xform = CATransform3DIdentity
+//      case .right:
+//        position.y = bounds.center.y
+//        position.x = bounds.maxX - animation.bounds.midX
+//        xform = CATransform3DIdentity
+//      case .topLeft:
+//        xform = CATransform3DIdentity
+//      case .topRight:
+//        position.x = bounds.maxX - animation.bounds.midX
+//        xform = CATransform3DIdentity
+//      case .bottomLeft:
+//        position.y = bounds.maxY - animation.bounds.midY
+//        xform = CATransform3DIdentity
+//      case .bottomRight:
+//        position.x = bounds.maxX - animation.bounds.midX
+//        position.y = bounds.maxY - animation.bounds.midY
+//        xform = CATransform3DIdentity
+//
+//        #if os(iOS) || os(tvOS)
+//      @unknown default:
+//        print("unsupported contentMode: \(contentMode.rawValue); please update lottie-ios")
+//        xform = CATransform3DIdentity
+//        #endif
+//      }
+//    }
+//
+//    /*
+//     UIView Animation does not implicitly set CAAnimation time or timing fuctions.
+//     If layout is changed in an animation we must get the current animation duration
+//     and timing function and then manually create a CAAnimation to match the UIView animation.
+//     If layout is changed without animation, explicitly set animation duration to 0.0
+//     inside CATransaction to avoid unwanted artifacts.
+//     */
+//
+//    /// Check if any animation exist on the view's layer, and grab the duration and timing functions of the animation.
+//    if let key = viewLayer?.animationKeys()?.first, let animation = viewLayer?.animation(forKey: key) {
+//      // The layout is happening within an animation block. Grab the animation data.
+//
+//      let animationKey = "LayoutAnimation"
+//      animationLayer.removeAnimation(forKey: animationKey)
+//
+//      let positionAnimation = CABasicAnimation(keyPath: "position")
+//      positionAnimation.fromValue = animationLayer.position
+//      positionAnimation.toValue = position
+//      let xformAnimation = CABasicAnimation(keyPath: "transform")
+//      xformAnimation.fromValue = animationLayer.transform
+//      xformAnimation.toValue = xform
+//
+//      let group = CAAnimationGroup()
+//      group.animations = [positionAnimation, xformAnimation]
+//      group.duration = animation.duration
+//      group.fillMode = .both
+//      group.timingFunction = animation.timingFunction
+//      if animation.beginTime > 0 {
+//        group.beginTime = CACurrentMediaTime() + animation.beginTime
+//      }
+//      group.isRemovedOnCompletion = true
+//
+//      animationLayer.position = position
+//      animationLayer.transform = xform
+//      animationLayer.add(group, forKey: animationKey)
+//    } else {
+//      CATransaction.begin()
+//      CATransaction.setAnimationDuration(0.0)
+//      CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: .linear))
+//      animationLayer.position = position
+//      animationLayer.transform = xform
+//      CATransaction.commit()
+//    }
+//
+//    if shouldForceUpdates {
+//      animationLayer.forceDisplayUpdate()
+//    }
+//  }
+//
+//  // MARK: - Private (Properties)
+//
+//
+//  var animationLayer: AnimationContainer? = nil
+//
+//  fileprivate var animationContext: AnimationContext?
+//  static private let animationName: String = "Lottie"
+//  fileprivate var activeAnimationName: String = AnimationView.animationName
+//  fileprivate var animationID: Int = 0
+//
+//  // MARK: - Private (Building Animation View)
+//
+//  fileprivate func makeAnimationLayer() {
+//
+//    /// Remove current animation if any
+//    removeCurrentAnimation()
+//
+//    if let oldAnimation = self.animationLayer {
+//      oldAnimation.removeFromSuperlayer()
+//    }
+//
+//    invalidateIntrinsicContentSize()
+//
+//    guard let animation = animation else {
+//      return
+//    }
+//
+//    let animationLayer = AnimationContainer(animation: animation, imageProvider: imageProvider, textProvider: textProvider)
+//    animationLayer.renderScale = self.screenScale
+//    viewLayer?.addSublayer(animationLayer)
+//    self.animationLayer = animationLayer
+//    reloadImages()
+//    animationLayer.setNeedsDisplay()
+//    setNeedsLayout()
+//    currentFrame = CGFloat(animation.startFrame)
+//  }
+//
+//  func updateRasterizationState() {
+//    if isAnimationPlaying {
+//      animationLayer?.shouldRasterize = false
+//    } else {
+//      animationLayer?.shouldRasterize = shouldRasterizeWhenIdle
+//    }
+//  }
+//
+//  // MARK: - Private (Animation Playback)
+//
+//  /// Updates the animation frame. Does not affect any current animations
+//  func updateAnimationFrame(_ newFrame: CGFloat) {
+//    CATransaction.begin()
+//    CATransaction.setDisableActions(true)
+//    animationLayer?.currentFrame = newFrame
+//    CATransaction.commit()
+//    CATransaction.setCompletionBlock {
+//        self.animationLayer?.forceDisplayUpdate()
+//    }
+//  }
+//
+//  @objc override func animationWillMoveToBackground() {
+//    updateAnimationForBackgroundState()
+//  }
+//
+//  @objc override func animationWillEnterForeground() {
+//    updateAnimationForForegroundState()
+//  }
+//
+//  override func animationMovedToWindow() {
+//    /// Don't update any state if both the `superview` and `window` is `nil`
+//    guard window != nil && superview != nil else { return }
+//
+//    if window != nil {
+//      updateAnimationForForegroundState()
+//    } else {
+//      updateAnimationForBackgroundState()
+//    }
+//  }
+//
+//  fileprivate func updateAnimationForBackgroundState() {
+//    if let currentContext = animationContext {
+//      switch backgroundBehavior {
+//      case .stop:
         removeCurrentAnimation()
         addNewAnimationForContext(context)
     }
@@ -496,6 +808,7 @@ final public class AnimationView: LottieView, UIKeyInput {
         }
         
         removeCurrentAnimation()
+//<<<<<<< HEAD
         if let loopMode = loopMode {
             /// Set the loop mode, if one was supplied
             self.loopMode = loopMode
@@ -1129,4 +1442,129 @@ final public class AnimationView: LottieView, UIKeyInput {
         updateRasterizationState()
     }
     
+//=======
+//        updateAnimationFrame(currentContext.playTo)
+//      }
+//    }
+//  }
+//  
+//  fileprivate var waitingToPlayAimation: Bool = false
+//  fileprivate func updateAnimationForForegroundState() {
+//    if let currentContext = animationContext {
+//      if waitingToPlayAimation {
+//        waitingToPlayAimation = false
+//        self.addNewAnimationForContext(currentContext)
+//      } else if backgroundBehavior == .pauseAndRestore {
+//        /// Restore animation from saved state
+//        updateInFlightAnimation()
+//      }
+//    }
+//  }
+//  
+//  /// Stops the current in flight animation and freezes the animation in its current state.
+//  fileprivate func removeCurrentAnimation() {
+//    guard animationContext != nil else { return }
+//    let pauseFrame = realtimeAnimationFrame
+//    animationLayer?.removeAnimation(forKey: activeAnimationName)
+//    updateAnimationFrame(pauseFrame)
+//    self.animationContext = nil
+//  }
+//  
+//  /// Updates an in flight animation.
+//  fileprivate func updateInFlightAnimation() {
+//    guard let animationContext = animationContext else { return }
+//    
+//    guard animationContext.closure.animationState != .complete else {
+//      // Tried to re-add an already completed animation. Cancel.
+//      self.animationContext = nil
+//      return
+//    }
+//    
+//    /// Tell existing context to ignore its closure
+//    animationContext.closure.ignoreDelegate = true
+//    
+//    /// Make a new context, stealing the completion block from the previous.
+//    let newContext = AnimationContext(playFrom: animationContext.playFrom,
+//                                      playTo: animationContext.playTo,
+//                                      closure: animationContext.closure.completionBlock)
+//    
+//    /// Remove current animation, and freeze the current frame.
+//    let pauseFrame = realtimeAnimationFrame
+//    animationLayer?.removeAnimation(forKey: activeAnimationName)
+//    animationLayer?.currentFrame = pauseFrame
+//    
+//    addNewAnimationForContext(newContext)
+//  }
+//  
+//  /// Adds animation to animation layer and sets the delegate. If animation layer or animation are nil, exits.
+//  fileprivate func addNewAnimationForContext(_ animationContext: AnimationContext) {
+//    guard let animationlayer = animationLayer, let animation = animation else {
+//      return
+//    }
+//    
+//    self.animationContext = animationContext
+//    
+//    guard self.window != nil else { waitingToPlayAimation = true; return }
+//    
+//    animationID = animationID + 1
+//    activeAnimationName = AnimationView.animationName + String(animationID)
+//    
+//    /// At this point there is no animation on animationLayer and its state is set.
+//    
+//    let framerate = animation.framerate
+//    
+//    let playFrom = animationContext.playFrom.clamp(animation.startFrame, animation.endFrame)
+//    let playTo = animationContext.playTo.clamp(animation.startFrame, animation.endFrame)
+//    
+//    let duration = ((max(playFrom, playTo) - min(playFrom, playTo)) / CGFloat(framerate))
+//    
+//    let playingForward: Bool =
+//      ((animationSpeed > 0 && playFrom < playTo) ||
+//        (animationSpeed < 0 && playTo < playFrom))
+//    
+//    var startFrame = currentFrame.clamp(min(playFrom, playTo), max(playFrom, playTo))
+//    if startFrame == playTo {
+//      startFrame = playFrom
+//    }
+//    
+//    let timeOffset: TimeInterval = playingForward ?
+//      Double(startFrame - min(playFrom, playTo)) / framerate :
+//      Double(max(playFrom, playTo) - startFrame) / framerate
+//    
+//    let layerAnimation = CABasicAnimation(keyPath: "currentFrame")
+//    layerAnimation.fromValue = playFrom
+//    layerAnimation.toValue = playTo
+//    layerAnimation.speed = Float(animationSpeed)
+//    layerAnimation.duration = TimeInterval(duration)
+//    layerAnimation.fillMode = CAMediaTimingFillMode.both
+//    
+//    switch loopMode {
+//    case .playOnce:
+//      layerAnimation.repeatCount = 1
+//    case .loop:
+//      layerAnimation.repeatCount = HUGE
+//    case .autoReverse:
+//      layerAnimation.repeatCount = HUGE
+//      layerAnimation.autoreverses = true
+//    case let .repeat(amount):
+//      layerAnimation.repeatCount = amount
+//    case let .repeatBackwards(amount):
+//      layerAnimation.repeatCount = amount
+//      layerAnimation.autoreverses = true
+//    }
+//    
+//    layerAnimation.isRemovedOnCompletion = false
+//    if timeOffset != 0 {
+//      let currentLayerTime = viewLayer?.convertTime(CACurrentMediaTime(), from: nil) ?? 0
+//      layerAnimation.beginTime = currentLayerTime - (timeOffset * 1 / Double(abs(animationSpeed)))
+//    }
+//    layerAnimation.delegate = animationContext.closure
+//    animationContext.closure.animationLayer = animationlayer
+//    animationContext.closure.animationKey = activeAnimationName
+//    
+//    animationlayer.add(layerAnimation, forKey: activeAnimationName)
+//    updateRasterizationState()
+//  }
+//  
+//>>>>>>> 934954c378fbd49f3798931cd314740ff3176972
 }
